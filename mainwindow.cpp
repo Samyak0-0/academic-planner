@@ -124,6 +124,8 @@ void MainWindow::on_SyllabusBut_clicked()
     ui->stackedWidget->setCurrentIndex(2);
 }
 
+int rowSpan[8][8];
+
 void MainWindow::TableWidgetDisplay() {
 
 
@@ -147,6 +149,7 @@ void MainWindow::TableWidgetDisplay() {
 
             courseCode[i][j] = new QPushButton("courseCode", this);
             courseCode[i][j]->setStyleSheet("QPushButton {border: none;}");
+            rowSpan[i][j] = 1;
 
             if(i==0 && j==0){
                 courseCode[i][j]->setText(" ");
@@ -307,10 +310,26 @@ void MainWindow::checkExistingTableData()
             QStringList lineArray = line.split(" ");
             m=lineArray[0].toInt();
             n=lineArray[1].toInt();
-            QString sbjCode = lineArray[2] + " " + lineArray[3];
+            QString sbjCode = lineArray[3] + " " + lineArray[4];
             courseCode[m][n]->setText(sbjCode);
             assignmentsDue[m][n]->show();
             progressBar[m][n]->show();
+            rowSpan[m][n] = lineArray[2].toInt();
+
+            if(rowSpan[m][n] != 1) {
+
+                for(int j=2; j<=rowSpan[m][n]; j++) {
+                    rowLayout[m]->removeWidget(courseCode[m][n+j-1]);
+                    rowLayout[m]->removeWidget(assignmentsDue[m][n+j-1]);
+                    rowLayout[m]->removeWidget(progressBar[m][n+j-1]);
+                    rowLayout[m]->removeWidget(extendRight[m][n+j-1]);
+
+                    courseCode[m][n+j-1]->hide();
+                    assignmentsDue[m][n+j-1]->hide();
+                    progressBar[m][n+j-1]->hide();
+                    extendRight[m][n+j-1]->hide();
+                }
+            }
         }
     }
 
@@ -330,7 +349,7 @@ void MainWindow::storeTableData()
             QString line = in.readLine();
             QStringList datalist = line.split(" ");
             if(datalist[0].toInt()==p && datalist[1].toInt()==q) {
-                QString joined = QString::number(p) + " " + QString::number(q) + " " + code;
+                QString joined = QString::number(p) + " " + QString::number(q) + " " + QString::number(rowSpan[p][q]) + " " + code;
                 lines.append(joined);
                 k=0;
 
@@ -354,7 +373,7 @@ void MainWindow::storeTableData()
     if(k) {
         if (routineFile.open(QIODevice::Append | QIODevice::Text)) {
             QTextStream out(&routineFile);
-            out << p <<" " << q <<" " << code <<"\n";
+            out << p <<" " << q <<" " << rowSpan[p][q] << " " << code <<"\n";
             // out << "This is a to-do list.\n";
             routineFile.close();
             qDebug() << "File written to:" << path;
@@ -440,29 +459,42 @@ void MainWindow::deleteCourse()
 
 void MainWindow::extend(int a, int b)
 {
-    qDebug()<<a<<b;
+
+    ++rowSpan[a][b];
+    int var = rowSpan[a][b];
+    int barWidth=0;
+    p=a;
+    q=b;
+
+    for(int k=1; k<=var; k++) {
+        barWidth += pageWidth/8;
+    }
 
     rowLayout[a]->removeWidget(courseCode[a][b]);
     rowLayout[a]->removeWidget(assignmentsDue[a][b]);
     rowLayout[a]->removeWidget(progressBar[a][b]);
     rowLayout[a]->removeWidget(extendRight[a][b]);
 
-    rowLayout[a]->removeWidget(courseCode[a][b+1]);
-    rowLayout[a]->removeWidget(assignmentsDue[a][b+1]);
-    rowLayout[a]->removeWidget(progressBar[a][b+1]);
-    rowLayout[a]->removeWidget(extendRight[a][b+1]);
+    rowLayout[a]->removeWidget(courseCode[a][b+var-1]);
+    rowLayout[a]->removeWidget(assignmentsDue[a][b+var-1]);
+    rowLayout[a]->removeWidget(progressBar[a][b+var-1]);
+    rowLayout[a]->removeWidget(extendRight[a][b+var-1]);
 
-    courseCode[a][b+1]->hide();
-    assignmentsDue[a][b+1]->hide();
-    progressBar[a][b+1]->hide();
-    extendRight[a][b+1]->hide();
+    courseCode[a][b+var-1]->hide();
+    assignmentsDue[a][b+var-1]->hide();
+    progressBar[a][b+var-1]->hide();
+    extendRight[a][b+var-1]->hide();
 
 
-    rowLayout[a]->addWidget(courseCode[a][b],0,b, 1, 2);
-    rowLayout[a]->addWidget(assignmentsDue[a][b],1,b, 1, 2);
-    rowLayout[a]->addWidget(progressBar[a][b],2,b, 1, 2);
-    progressBar[a][b]->setMaximumWidth(pageWidth/8+pageWidth/8);
-    rowLayout[a]->addWidget(extendRight[a][b],3,b, 1, 2);
+    rowLayout[a]->addWidget(courseCode[a][b],0,b, 1, var);
+    rowLayout[a]->addWidget(assignmentsDue[a][b],1,b, 1, var);
+    rowLayout[a]->addWidget(progressBar[a][b],2,b, 1, var);
+    progressBar[a][b]->setMaximumWidth(barWidth);
+    rowLayout[a]->addWidget(extendRight[a][b],3,b, 1, var);
+
+    code = courseCode[a][b]->text();
+    qDebug()<<a<<b << code;
+    storeTableData();
 
 }
 
@@ -472,10 +504,17 @@ void MainWindow::resizeEvent(QResizeEvent *event) {
     QStackedWidget *stackedWidget = ui->stackedWidget;
     QWidget *page1 = stackedWidget->widget(0);
     pageWidth = page1->width();
+    int barWidth=0;
 
     for(int i=1; i<=7; i++) {
         for(int j=1; j<=7; j++) {
-            progressBar[i][j]->setMaximumWidth(pageWidth/8);
+
+            for(int k=1; k<=rowSpan[i][j]; k++) {
+                barWidth += pageWidth/8;
+            }
+
+            progressBar[i][j]->setMaximumWidth(barWidth);
+            barWidth = 0;
         }
     }
 

@@ -29,6 +29,8 @@ public:
     ~MainWindow();
     void on_plus_clicked(int a, int b);
 
+
+
 private slots:
     void on_RoutineBut_clicked();
 
@@ -49,6 +51,7 @@ private slots:
     void deleteCourse();
 
     void extend(int a, int b);
+
 
     /*
     void on_AddTaskBut_clicked();
