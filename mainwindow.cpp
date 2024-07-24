@@ -448,9 +448,41 @@ void MainWindow::deleteCourse()
 
     }
 
-    courseCode[p][q]->setText("+");
-    assignmentsDue[p][q]->hide();
-    progressBar[p][q]->hide();
+    for(int j=1;j<=rowSpan[p][q];++j) {
+        if(j==1) {
+
+            rowLayout[p]->removeWidget(courseCode[p][q]);
+            rowLayout[p]->removeWidget(assignmentsDue[p][q]);
+            rowLayout[p]->removeWidget(progressBar[p][q]);
+            rowLayout[p]->removeWidget(extendRight[p][q]);
+
+            rowLayout[p]->addWidget(courseCode[p][q],0,q);
+            rowLayout[p]->addWidget(assignmentsDue[p][q],1,q);
+            rowLayout[p]->addWidget(progressBar[p][q],2,q);
+            rowLayout[p]->addWidget(extendRight[p][q],3,q);
+
+            courseCode[p][q]->setText("+");
+            assignmentsDue[p][q]->hide();
+            progressBar[p][q]->setMaximumWidth(pageWidth/8);
+            progressBar[p][q]->hide();
+
+
+        } else {
+
+            rowLayout[p]->addWidget(courseCode[p][q+j-1], 0, q+j-1);
+            rowLayout[p]->addWidget(assignmentsDue[p][q+j-1], 1, q+j-1);
+            rowLayout[p]->addWidget(progressBar[p][q+j-1], 2, q+j-1);
+            rowLayout[p]->addWidget(extendRight[p][q+j-1], 3, q+j-1);
+
+            courseCode[p][q+j-1]->show();
+            assignmentsDue[p][q+j-1]->hide();
+            progressBar[p][q+j-1]->hide();
+            progressBar[p][q+j-1]->setMaximumWidth(pageWidth/8);
+            extendRight[p][q+j-1]->show();
+        }
+    }
+
+    rowSpan[p][q] = 1;
 
     ui->stackedWidget->setCurrentIndex(0);
 
