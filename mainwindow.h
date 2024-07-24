@@ -29,6 +29,8 @@ public:
     ~MainWindow();
     void on_plus_clicked(int a, int b);
 
+    void syllabusPageClicked();
+
 
 
 private slots:
@@ -76,8 +78,6 @@ private:
                    + "\\todofile.txt";
     QString routinePath = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)
                    + "\\routinePath.txt";
-    QString syllabusPath = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)
-                          + "\\syllabusPath.txt";
 
     void selectionForm();
     QLineEdit *courseName;

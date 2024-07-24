@@ -12,6 +12,7 @@
 #include <QGridLayout>
 #include <QLabel>
 #include <QPushButton>
+#include <QSet>
 
 
 #include <QFile>
@@ -35,6 +36,8 @@
 #include <QJsonValue>
 #include <QListView>
 #include <QListWidgetItem>
+#include <QSpacerItem>
+#include <QCheckBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -121,7 +124,7 @@ void MainWindow::on_ToDoBut_clicked()
 
 void MainWindow::on_SyllabusBut_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(2);
+    syllabusPageClicked();
 }
 
 int rowSpan[8][8];
@@ -225,8 +228,10 @@ void MainWindow::on_plus_clicked(int a, int b)
 }
 
 
-
 QString code;
+QStringList syllabusTopics;
+
+QSet<QString> syllabusCodesSet;
 
 void MainWindow::onComboBoxValueChanged(int index) {
 
@@ -261,6 +266,8 @@ void MainWindow::onComboBoxValueChanged(int index) {
     QObject::connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
     loop.exec();
 
+    syllabusTopics.clear();
+
 
 
     if(reply->error() == QNetworkReply::NoError) {
@@ -275,6 +282,7 @@ void MainWindow::onComboBoxValueChanged(int index) {
         for (const QJsonValue &value : jsonArray) {
             if (value.isString()) {
                 syllabus->addItem(value.toString());
+                syllabusTopics.append(value.toString());
             }
         }
         qDebug() <<data;
@@ -292,6 +300,26 @@ void MainWindow::okClicked() {
     progressBar[p][q]->show();
 
     ui->stackedWidget->setCurrentIndex(0);
+
+
+    QString syllabusPath = QCoreApplication::applicationDirPath() + "/" + code + ".txt";
+    QFile syllabusFile(syllabusPath);
+
+    if(!syllabusCodesSet.contains(code)) {
+        if (syllabusFile.open(QIODevice::WriteOnly)) {
+
+            QTextStream out(&syllabusFile);
+            for (const QString &line : syllabusTopics) {
+                out << 0 << " " << line << "\n";
+            }
+
+            syllabusFile.close();
+            qDebug() << "File written to:" << syllabusPath;
+        }
+    }
+
+    syllabusCodesSet.insert(code);
+
     storeTableData();
 
 }
@@ -311,6 +339,9 @@ void MainWindow::checkExistingTableData()
             m=lineArray[0].toInt();
             n=lineArray[1].toInt();
             QString sbjCode = lineArray[3] + " " + lineArray[4];
+
+            syllabusCodesSet.insert(sbjCode);
+
             courseCode[m][n]->setText(sbjCode);
             assignmentsDue[m][n]->show();
             progressBar[m][n]->show();
@@ -649,3 +680,66 @@ void MainWindow::on_DeleteAllTasksBut_clicked()
     ui->listWidget->clear();
 }
 */
+
+
+
+// syllabus page
+
+void MainWindow::syllabusPageClicked()
+{
+
+    QStackedWidget *stackedWidget = ui->stackedWidget;
+    QWidget *syllabusPage = stackedWidget->widget(2);
+
+    QGridLayout *layout_2 = new QGridLayout(this);
+
+    QLabel *syllLabel = new QLabel(this);
+    syllLabel->setText("Syllabus : ");
+    layout_2->addWidget(syllLabel, 0, 0);
+
+
+
+    int o=1;
+    for(const QString &syllCodes: syllabusCodesSet) {
+
+        QString topicsPath = QCoreApplication::applicationDirPath() + "/" + syllCodes + ".txt";
+        QFile topicsFile(topicsPath);
+
+        QLabel *sbjLabel = new QLabel(this);
+        sbjLabel->setText(syllCodes);
+        layout_2->addWidget(sbjLabel,o,0);
+        ++o;
+
+        if (topicsFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+
+            QTextStream in(&topicsFile);
+
+            while (!in.atEnd()) {
+                QString line = in.readLine();
+                QString numVal = line.at(0);
+
+                line.remove(0,2);
+
+                QCheckBox *checkBox = new QCheckBox(this);
+                if(numVal.toInt()) {
+                    checkBox->setChecked(true);
+                }
+                layout_2->addWidget(checkBox,o,0);
+
+
+                QLabel *topicsLabel = new QLabel(this);
+                topicsLabel->setText(line);
+                layout_2->addWidget(topicsLabel,o,1);
+                ++o;
+
+            }
+
+        }
+
+        topicsFile.close();
+    }
+
+    syllabusPage->setLayout(layout_2);
+
+    ui->stackedWidget->setCurrentIndex(2);
+}
