@@ -38,6 +38,7 @@
 #include <QListWidgetItem>
 #include <QSpacerItem>
 #include <QCheckBox>
+#include <QScrollArea>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -110,6 +111,13 @@ MainWindow::~MainWindow()
 }
 
 int pageWidth;
+
+QString code;
+QStringList syllabusTopics;
+
+QSet<QString> syllabusCodesSet;
+
+
 //buttons to switch  betn pages in stacked widgets.
 
 void MainWindow::on_RoutineBut_clicked()
@@ -124,7 +132,7 @@ void MainWindow::on_ToDoBut_clicked()
 
 void MainWindow::on_SyllabusBut_clicked()
 {
-    syllabusPageClicked();
+    syllabusPageClicked(syllabusCodesSet);
 }
 
 int rowSpan[8][8];
@@ -228,10 +236,7 @@ void MainWindow::on_plus_clicked(int a, int b)
 }
 
 
-QString code;
-QStringList syllabusTopics;
 
-QSet<QString> syllabusCodesSet;
 
 void MainWindow::onComboBoxValueChanged(int index) {
 
@@ -685,22 +690,28 @@ void MainWindow::on_DeleteAllTasksBut_clicked()
 
 // syllabus page
 
-void MainWindow::syllabusPageClicked()
+
+
+QGridLayout *layout_3 = new QGridLayout;
+int initialRender = 0;
+
+void MainWindow::syllabusPageClicked(QSet<QString> syllabusCodesSetParam)
 {
 
     QStackedWidget *stackedWidget = ui->stackedWidget;
     QWidget *syllabusPage = stackedWidget->widget(2);
 
-    QGridLayout *layout_2 = new QGridLayout(this);
+    QWidget *layout_2Container = new QWidget;
+    QGridLayout *layout_2 = new QGridLayout(layout_2Container);
 
     QLabel *syllLabel = new QLabel(this);
     syllLabel->setText("Syllabus : ");
-    layout_2->addWidget(syllLabel, 0, 0);
+    layout_2->addWidget(syllLabel);
 
 
 
     int o=1;
-    for(const QString &syllCodes: syllabusCodesSet) {
+    for(const QString &syllCodes: syllabusCodesSetParam) {
 
         QString topicsPath = QCoreApplication::applicationDirPath() + "/" + syllCodes + ".txt";
         QFile topicsFile(topicsPath);
@@ -739,7 +750,21 @@ void MainWindow::syllabusPageClicked()
         topicsFile.close();
     }
 
-    syllabusPage->setLayout(layout_2);
+    QScrollArea *scrollableArea = new QScrollArea();
+    scrollableArea->setWidget(layout_2Container);
+    scrollableArea->setWidgetResizable(true);
+
+    if(initialRender) {
+        QLayoutItem *item;
+        item = layout_3->takeAt(0);
+        QWidget *widget = item->widget();
+        widget->hide();
+    }
+
+    layout_3->addWidget(scrollableArea);
+    syllabusPage->setLayout(layout_3);
+
+    ++initialRender;
 
     ui->stackedWidget->setCurrentIndex(2);
 }

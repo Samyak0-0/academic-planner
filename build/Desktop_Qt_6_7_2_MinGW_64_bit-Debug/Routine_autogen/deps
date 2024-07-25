@@ -6,6 +6,7 @@ Routine_autogen/timestamp: \
 	D:/Qt/6.7.2/mingw_64/include/QtCore/QMap \
 	D:/Qt/6.7.2/mingw_64/include/QtCore/QMutex \
 	D:/Qt/6.7.2/mingw_64/include/QtCore/QObject \
+	D:/Qt/6.7.2/mingw_64/include/QtCore/QSet \
 	D:/Qt/6.7.2/mingw_64/include/QtCore/QStandardPaths \
 	D:/Qt/6.7.2/mingw_64/include/QtCore/QString \
 	D:/Qt/6.7.2/mingw_64/include/QtCore/QStringList \

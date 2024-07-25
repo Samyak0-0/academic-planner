@@ -11,6 +11,7 @@
 #include <QLabel>
 #include <QProgressBar>
 #include <QGridLayout>
+#include <QSet>
 
 QT_BEGIN_NAMESPACE
 
@@ -29,7 +30,7 @@ public:
     ~MainWindow();
     void on_plus_clicked(int a, int b);
 
-    void syllabusPageClicked();
+    void syllabusPageClicked(QSet<QString> syllabusCodesSetParam);
 
 
 

@@ -7,6 +7,7 @@ D:/qtt/Academic_Planner/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Routine_autoge
   D:/Qt/6.7.2/mingw_64/include/QtCore/QMap \
   D:/Qt/6.7.2/mingw_64/include/QtCore/QMutex \
   D:/Qt/6.7.2/mingw_64/include/QtCore/QObject \
+  D:/Qt/6.7.2/mingw_64/include/QtCore/QSet \
   D:/Qt/6.7.2/mingw_64/include/QtCore/QStandardPaths \
   D:/Qt/6.7.2/mingw_64/include/QtCore/QString \
   D:/Qt/6.7.2/mingw_64/include/QtCore/QStringList \
