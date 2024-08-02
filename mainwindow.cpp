@@ -13,6 +13,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QSet>
+#include <QVector>
 
 
 #include <QFile>
@@ -85,14 +86,15 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+
     //this destructor might be being called first (delete ui part)
     //before todolist destructor so cant put it in the todolist.cpp at the moment!
     //using destructor to ig save data to the file
     QFile file(path);
 
     //if no file create it. !!WRITEONLY!!!
-    if (!file.open(QIODevice::WriteOnly)) {
-        QMessageBox::information(0, "Error", file.errorString());
+    if(!file.open(QIODevice::WriteOnly)){
+        QMessageBox::information(0,"Error",file.errorString());
     }
 
     //file from QFile file., accessing textstream
@@ -100,14 +102,15 @@ MainWindow::~MainWindow()
 
     //reading item from the file same syntax as in reading from textbox
     //everything similar upto here
-    for (int i = 0; i < ui->listWidget->count(); ++i) {
+    for(int i=0; i<ui->listWidget->count(); ++i){
         //similar to cout
-        fileout << ui->listWidget->item(i)->text() << "\n";
+        fileout<<ui->listWidget->item(i)->text()<<"\t" << (ui->listWidget->item(i)->checkState() == Qt::Checked ? "1" : "0") << "\n";
     }
 
     file.close();
 
     delete ui;
+
 }
 
 int pageWidth;
@@ -338,6 +341,9 @@ void MainWindow::checkExistingTableData()
     } else {
 
         QTextStream in(&routineFile);
+
+
+
         while (!in.atEnd()) {
             QString line = in.readLine();
             QStringList lineArray = line.split(" ");
@@ -347,10 +353,41 @@ void MainWindow::checkExistingTableData()
 
             syllabusCodesSet.insert(sbjCode);
 
+
+
             courseCode[m][n]->setText(sbjCode);
             assignmentsDue[m][n]->show();
             progressBar[m][n]->show();
             rowSpan[m][n] = lineArray[2].toInt();
+
+            QString checkBoxPath = QCoreApplication::applicationDirPath() + "/" + sbjCode + ".txt";
+            QFile checkBoxFile(checkBoxPath);
+
+            QVector<int> intArray;
+            int countt=0;
+
+            if (checkBoxFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+
+                QTextStream in(&checkBoxFile);
+
+                while (!in.atEnd()) {
+
+                    QString line = in.readLine();
+
+                    QString val = line.at(0);
+                    intArray.append(val.toInt());
+                    if(val.toInt()) {
+                        ++countt;
+                    }
+                    qDebug()<<val;
+                }
+
+                checkBoxFile.close();
+                qDebug()<<countt;
+
+            }
+            int calc = (countt*100)/intArray.size();
+            progressBar[m][n]->setValue(calc);
 
             if(rowSpan[m][n] != 1) {
 
@@ -711,6 +748,7 @@ void MainWindow::syllabusPageClicked(QSet<QString> syllabusCodesSetParam)
 
 
     int o=1;
+    int row=0;
     for(const QString &syllCodes: syllabusCodesSetParam) {
 
         QString topicsPath = QCoreApplication::applicationDirPath() + "/" + syllCodes + ".txt";
@@ -731,10 +769,18 @@ void MainWindow::syllabusPageClicked(QSet<QString> syllabusCodesSetParam)
 
                 line.remove(0,2);
 
-                QCheckBox *checkBox = new QCheckBox(this);
+                QCheckBox *checkBox = new QCheckBox;
                 if(numVal.toInt()) {
                     checkBox->setChecked(true);
                 }
+                QObject::connect(checkBox, &QCheckBox::stateChanged, [=](int state) {
+                    if(state == Qt::Checked) {
+                        checkBoxChanged(1, syllCodes, row);
+                    } else {
+                        checkBoxChanged(0, syllCodes, row);
+                    }
+                });
+                ++row;
                 layout_2->addWidget(checkBox,o,0);
 
 
@@ -767,4 +813,46 @@ void MainWindow::syllabusPageClicked(QSet<QString> syllabusCodesSetParam)
     ++initialRender;
 
     ui->stackedWidget->setCurrentIndex(2);
+}
+
+void MainWindow::checkBoxChanged(int value, QString syllCode, int row)
+{
+    QString checkBoxPath = QCoreApplication::applicationDirPath() + "/" + syllCode + ".txt";
+    QFile checkBoxFile(checkBoxPath);
+    int r=0;
+
+    QStringList linesList;
+    if (checkBoxFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+
+        QTextStream in(&checkBoxFile);
+
+        while (!in.atEnd()) {
+
+            QString line = in.readLine();
+
+            if(r==row) {
+                QString v = QString::number(value);
+                line.replace(0,1,v);
+            }
+
+            linesList.append(line);
+
+            ++r;
+        }
+
+        checkBoxFile.close();
+
+    }
+
+
+    if (checkBoxFile.open(QIODevice::WriteOnly)) {
+
+        QTextStream out(&checkBoxFile);
+        for (const QString &line : linesList) {
+            out << line << "\n";
+        }
+        checkBoxFile.close();
+    }
+
+
 }

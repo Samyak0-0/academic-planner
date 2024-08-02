@@ -32,6 +32,8 @@ public:
 
     void syllabusPageClicked(QSet<QString> syllabusCodesSetParam);
 
+    void checkBoxChanged(int value, QString syllCode, int row);
+
 
 
 private slots:
