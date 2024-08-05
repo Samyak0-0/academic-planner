@@ -1,8 +1,8 @@
 0 Introduction to signals and systems
 0 Sampling of Continuous-time signals
 0 Fourier Analysis
-0 Discrete Fourier Transform
-0 Z-transform
+1 Discrete Fourier Transform
+1 Z-transform
 0 Discrete Filters
 0 IIR Filter Design
 0 FIR Filter Design

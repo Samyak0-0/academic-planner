@@ -125,7 +125,9 @@ QSet<QString> syllabusCodesSet;
 
 void MainWindow::on_RoutineBut_clicked()
 {
+    checkExistingTableData();
     ui->stackedWidget->setCurrentIndex(0);
+
 }
 
 void MainWindow::on_ToDoBut_clicked()
@@ -173,17 +175,13 @@ void MainWindow::TableWidgetDisplay() {
                 rowLayout[i]->addWidget(courseCode[i][j], 0, j);
             } else if(j==0) {
                 courseCode[i][j]->setText(daysOfWeek[i]);
-                rowLayout[i]->addWidget(courseCode[i][j], 1, 0);
+                rowLayout[i]->addWidget(courseCode[i][j], 0, 0);
             } else {
                 courseCode[i][j] -> setText("+");
-                assignmentsDue[i][j] = new QPushButton("assignmentsDue",this);
-                assignmentsDue[i][j]->setText("Due: . . .");
-                assignmentsDue[i][j]->hide();
-
 
                 progressBar[i][j] = new QProgressBar(this);
                 progressBar[i][j]->setRange(0, 100);
-                progressBar[i][j]->setValue(10);
+                // progressBar[i][j]->setValue(10);
                 progressBar[i][j]->setStyleSheet("QProgressBar {"
                                                  "min-height: 6px;"
                                                  "max-height: 7px;"
@@ -195,12 +193,16 @@ void MainWindow::TableWidgetDisplay() {
 
                 extendRight[i][j] = new QPushButton(this);
                 extendRight[i][j]->setText(">");
-                // extendRight[i][j]->hide();
+                extendRight[i][j]->hide();
+                extendRight[i][j]->setStyleSheet("QPushButton {"
+                                                 "margin-right: 10px;"  // Margin around the button
+                                                 "text-align: right;"                                                 // Padding inside the button
+                                                 "}");
+                // extendRight[i][j]->setStyleSheet("padding-right: 2px");
 
                 rowLayout[i]->addWidget(courseCode[i][j], 0, j);
-                rowLayout[i]->addWidget(assignmentsDue[i][j], 1, j);
-                rowLayout[i]->addWidget(progressBar[i][j], 2, j);
-                rowLayout[i]->addWidget(extendRight[i][j], 3, j);
+                rowLayout[i]->addWidget(progressBar[i][j], 1, j);
+                rowLayout[i]->addWidget(extendRight[i][j], 2, j);
                 QObject::connect(courseCode[i][j], &QPushButton::clicked, [this,i,j]() {
                     this->on_plus_clicked(i,j);
                 });
@@ -303,9 +305,8 @@ void MainWindow::onComboBoxValueChanged(int index) {
 void MainWindow::okClicked() {
 
     courseCode[p][q]->setText(code);
-    assignmentsDue[p][q]->setText("Due: . . . ");
-    assignmentsDue[p][q]->show();
     progressBar[p][q]->show();
+    extendRight[p][q]->show();
 
     ui->stackedWidget->setCurrentIndex(0);
 
@@ -356,8 +357,8 @@ void MainWindow::checkExistingTableData()
 
 
             courseCode[m][n]->setText(sbjCode);
-            assignmentsDue[m][n]->show();
             progressBar[m][n]->show();
+            extendRight[m][n]->show();
             rowSpan[m][n] = lineArray[2].toInt();
 
             QString checkBoxPath = QCoreApplication::applicationDirPath() + "/" + sbjCode + ".txt";
@@ -379,26 +380,25 @@ void MainWindow::checkExistingTableData()
                     if(val.toInt()) {
                         ++countt;
                     }
-                    qDebug()<<val;
+                    qDebug()<<val<<"asasdsds";
                 }
 
                 checkBoxFile.close();
-                qDebug()<<countt;
+                qDebug()<<countt<<"pp";
 
             }
             int calc = (countt*100)/intArray.size();
             progressBar[m][n]->setValue(calc);
+            qDebug()<<calc<<"ss";
 
             if(rowSpan[m][n] != 1) {
 
                 for(int j=2; j<=rowSpan[m][n]; j++) {
                     rowLayout[m]->removeWidget(courseCode[m][n+j-1]);
-                    rowLayout[m]->removeWidget(assignmentsDue[m][n+j-1]);
                     rowLayout[m]->removeWidget(progressBar[m][n+j-1]);
                     rowLayout[m]->removeWidget(extendRight[m][n+j-1]);
 
                     courseCode[m][n+j-1]->hide();
-                    assignmentsDue[m][n+j-1]->hide();
                     progressBar[m][n+j-1]->hide();
                     extendRight[m][n+j-1]->hide();
                 }
@@ -525,17 +525,14 @@ void MainWindow::deleteCourse()
         if(j==1) {
 
             rowLayout[p]->removeWidget(courseCode[p][q]);
-            rowLayout[p]->removeWidget(assignmentsDue[p][q]);
             rowLayout[p]->removeWidget(progressBar[p][q]);
             rowLayout[p]->removeWidget(extendRight[p][q]);
 
             rowLayout[p]->addWidget(courseCode[p][q],0,q);
-            rowLayout[p]->addWidget(assignmentsDue[p][q],1,q);
             rowLayout[p]->addWidget(progressBar[p][q],2,q);
             rowLayout[p]->addWidget(extendRight[p][q],3,q);
 
             courseCode[p][q]->setText("+");
-            assignmentsDue[p][q]->hide();
             progressBar[p][q]->setMaximumWidth(pageWidth/8);
             progressBar[p][q]->hide();
 
@@ -543,12 +540,10 @@ void MainWindow::deleteCourse()
         } else {
 
             rowLayout[p]->addWidget(courseCode[p][q+j-1], 0, q+j-1);
-            rowLayout[p]->addWidget(assignmentsDue[p][q+j-1], 1, q+j-1);
             rowLayout[p]->addWidget(progressBar[p][q+j-1], 2, q+j-1);
             rowLayout[p]->addWidget(extendRight[p][q+j-1], 3, q+j-1);
 
             courseCode[p][q+j-1]->show();
-            assignmentsDue[p][q+j-1]->hide();
             progressBar[p][q+j-1]->hide();
             progressBar[p][q+j-1]->setMaximumWidth(pageWidth/8);
             extendRight[p][q+j-1]->show();
@@ -576,23 +571,19 @@ void MainWindow::extend(int a, int b)
     }
 
     rowLayout[a]->removeWidget(courseCode[a][b]);
-    rowLayout[a]->removeWidget(assignmentsDue[a][b]);
     rowLayout[a]->removeWidget(progressBar[a][b]);
     rowLayout[a]->removeWidget(extendRight[a][b]);
 
     rowLayout[a]->removeWidget(courseCode[a][b+var-1]);
-    rowLayout[a]->removeWidget(assignmentsDue[a][b+var-1]);
     rowLayout[a]->removeWidget(progressBar[a][b+var-1]);
     rowLayout[a]->removeWidget(extendRight[a][b+var-1]);
 
     courseCode[a][b+var-1]->hide();
-    assignmentsDue[a][b+var-1]->hide();
     progressBar[a][b+var-1]->hide();
     extendRight[a][b+var-1]->hide();
 
 
     rowLayout[a]->addWidget(courseCode[a][b],0,b, 1, var);
-    rowLayout[a]->addWidget(assignmentsDue[a][b],1,b, 1, var);
     rowLayout[a]->addWidget(progressBar[a][b],2,b, 1, var);
     progressBar[a][b]->setMaximumWidth(barWidth);
     rowLayout[a]->addWidget(extendRight[a][b],3,b, 1, var);
@@ -749,6 +740,7 @@ void MainWindow::syllabusPageClicked(QSet<QString> syllabusCodesSetParam)
 
     int o=1;
     int row=0;
+
     for(const QString &syllCodes: syllabusCodesSetParam) {
 
         QString topicsPath = QCoreApplication::applicationDirPath() + "/" + syllCodes + ".txt";
@@ -769,7 +761,7 @@ void MainWindow::syllabusPageClicked(QSet<QString> syllabusCodesSetParam)
 
                 line.remove(0,2);
 
-                QCheckBox *checkBox = new QCheckBox;
+                QCheckBox *checkBox = new QCheckBox(this);
                 if(numVal.toInt()) {
                     checkBox->setChecked(true);
                 }
@@ -779,6 +771,7 @@ void MainWindow::syllabusPageClicked(QSet<QString> syllabusCodesSetParam)
                     } else {
                         checkBoxChanged(0, syllCodes, row);
                     }
+                    qDebug()<<syllCodes;
                 });
                 ++row;
                 layout_2->addWidget(checkBox,o,0);
@@ -792,7 +785,7 @@ void MainWindow::syllabusPageClicked(QSet<QString> syllabusCodesSetParam)
             }
 
         }
-
+        row=0;
         topicsFile.close();
     }
 
@@ -820,6 +813,8 @@ void MainWindow::checkBoxChanged(int value, QString syllCode, int row)
     QString checkBoxPath = QCoreApplication::applicationDirPath() + "/" + syllCode + ".txt";
     QFile checkBoxFile(checkBoxPath);
     int r=0;
+
+    qDebug() << syllCode <<" " <<row;
 
     QStringList linesList;
     if (checkBoxFile.open(QIODevice::ReadOnly | QIODevice::Text)) {

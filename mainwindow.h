@@ -36,6 +36,8 @@ public:
 
 
 
+
+
 private slots:
     void on_RoutineBut_clicked();
 
@@ -73,7 +75,6 @@ private:
     ToDoList *toDoList;
     void TableWidgetDisplay();
     QPushButton *courseCode[8][8];
-    QPushButton *assignmentsDue[8][8];
     QProgressBar *progressBar[8][8];
     QPushButton *extendRight[8][8];
 
@@ -88,6 +89,8 @@ private:
     QListWidget *syllabus;
 
     QGridLayout *rowLayout[8];
+
+    // QCheckBox *checkBox[50];
 };
 
 #endif // MAINWINDOW_H
