@@ -1,8 +1,0 @@
-1 The Analysis of Algorithms
-1 Linear Data Structure – Stack
-1 Linear Data Structure-Queue
-1 Linear Data Structure - Linked List
-1 Hierarchical Data Structure - Tree
-1 Graph
-1 Sorting
-1 Searching and Hashing

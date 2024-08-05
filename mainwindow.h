@@ -49,11 +49,17 @@ private slots:
 
     void okClicked();
 
+    void cancelClicked();
+
+    void on_ok_clicked();
+
+    void onItemChanged();
+
     void checkExistingTableData();
 
     void storeTableData();
 
-    void courseCodeClicked();
+    void courseCodeClicked(int a, int b );
 
     void deleteCourse();
 

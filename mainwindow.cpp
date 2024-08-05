@@ -36,6 +36,7 @@
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QListView>
+#include <QListWidget>
 #include <QListWidgetItem>
 #include <QSpacerItem>
 #include <QCheckBox>
@@ -132,6 +133,13 @@ void MainWindow::on_RoutineBut_clicked()
 
 void MainWindow::on_ToDoBut_clicked()
 {
+    // delete toDoList;
+    // toDoList = new ToDoList(ui->listWidget,
+    //                         ui->tasktextbox,
+    //                         ui->AddTaskBut,
+    //                         ui->DeleteTaskBut,
+    //                         ui->DeleteAllTasksBut,
+    //                         this);
     ui->stackedWidget->setCurrentIndex(1);
 }
 
@@ -226,16 +234,27 @@ void MainWindow::TableWidgetDisplay() {
 }
 
 int p,q;
+int render1 = 0;
 
 void MainWindow::on_plus_clicked(int a, int b)
 {
     p=a;
     q=b;
 
+
     if(courseCode[a][b]->text()=="+") {
         ui->stackedWidget->setCurrentIndex(3);
     } else {
-        courseCodeClicked();
+
+        // if (render1) {
+        //     QWidget* page = ui->stackedWidget->widget(4);
+        //     ui->stackedWidget->removeWidget(page);
+        //     // delete page;
+        // }
+
+
+        courseCodeClicked(a,b);
+
     }
 
 }
@@ -330,6 +349,22 @@ void MainWindow::okClicked() {
     syllabusCodesSet.insert(code);
 
     storeTableData();
+
+}
+
+void MainWindow::cancelClicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_ok_clicked()
+{
+    checkExistingTableData();
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::onItemChanged()
+{
 
 }
 
@@ -455,42 +490,119 @@ void MainWindow::storeTableData()
 
 }
 
-void MainWindow::courseCodeClicked()
+QGridLayout *layout2 = new QGridLayout;
+QGridLayout *layout_2 = new QGridLayout;
+
+void MainWindow::courseCodeClicked(int a, int b)
 {
     QStackedWidget *stackedWidget = ui->stackedWidget;
     QWidget *page5 = stackedWidget->widget(4);
 
 
-    QGridLayout *layout2 = new QGridLayout(this);
 
+    // QGridLayout *layout2 = new QGridLayout(this);
+
+    QString cCode = courseCode[a][b]->text();
     QLabel *courseCode0 = new QLabel(this);
-    courseCode0->setText(courseCode[p][q]->text());
+    courseCode0->setText(courseCode[a][b]->text());
 
-    QLabel *assignment0 = new QLabel(this);
-    assignment0->setText("Assignment");
+    // QLabel *assignment0 = new QLabel(this);
+    // assignment0->setText("Assignment");
+
+    // QFile file(path);
+    // QListWidget *listWidget = new QListWidget();
+    // if (!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
+    //     QMessageBox::information(nullptr, "Error", file.errorString());
+    // } else {
+    //     QTextStream filein(&file);
+    //     while (!filein.atEnd()) {
+    //         QString line = filein.readLine();
+    //         QStringList parts = line.split("\t"); // Assume that each line is in the format: "text\tcheckState"
+    //         if (parts.size() == 2) {
+    //             QListWidgetItem* item = new QListWidgetItem(parts[0], listWidget);
+    //             item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
+    //             item->setCheckState(parts[1] == "1" ? Qt::Checked : Qt::Unchecked);
+    //             listWidget->addItem(item);
+    //         }
+    //     }
+    // }
+    //     file.close();
+
+    // // connect(listWidget, &QListWidget::itemChanged, this, &MainWindow::onItemChanged);
+
+    // layout2->addWidget(listWidget,2,1);
+
+
+
+
 
     QLabel *syllabus0 = new QLabel(this);
-    syllabus0->setText("syll");
+    syllabus0->setText("Syllabus");
 
     layout2->addWidget(courseCode0, 0, 1);
-    layout2->addWidget(assignment0, 1, 1);
-    layout2->addWidget(syllabus0, 2, 1);
+    // layout2->addWidget(assignment0, 1, 1);
+    layout2->addWidget(syllabus0, 1, 1);
 
     QPushButton *ok = new QPushButton(this);
     ok->setText("ok");
+    connect(ok, &QPushButton::clicked, this, &MainWindow::on_ok_clicked);
 
     QPushButton *deleteBtn = new QPushButton(this);
     deleteBtn->setText("delete");
 
-    layout2->addWidget(ok,3,1);
-    layout2->addWidget(deleteBtn,3,2);
+    layout2->addWidget(ok,3,1,2,1);
+    layout2->addWidget(deleteBtn,3,2,2,1);
 
     connect(deleteBtn, &QPushButton::clicked, this, &MainWindow::deleteCourse);
 
     page5->setLayout(layout2);
 
-    ui->stackedWidget->setCurrentIndex(4);
 
+
+    int row=0;
+
+        QString topicsPath = QCoreApplication::applicationDirPath() + "/" +  cCode + ".txt";
+        QFile topicsFile(topicsPath);
+
+        if (topicsFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+
+            QTextStream in(&topicsFile);
+
+            while (!in.atEnd()) {
+                QString line = in.readLine();
+                QString numVal = line.at(0);
+
+                line.remove(0,2);
+
+                QCheckBox *checkBox = new QCheckBox(this);
+                if(numVal.toInt()) {
+                    checkBox->setChecked(true);
+                }
+                QObject::connect(checkBox, &QCheckBox::stateChanged, [=](int state) {
+                    if(state == Qt::Checked) {
+                        checkBoxChanged(1, cCode, row);
+                    } else {
+                        checkBoxChanged(0,cCode, row);
+                    }
+
+                });
+                ++row;
+                layout_2->addWidget(checkBox,row,0);
+
+
+                QLabel *topicsLabel = new QLabel(this);
+                topicsLabel->setText(line);
+                layout_2->addWidget(topicsLabel,row,1);
+
+
+            }
+
+        }
+        topicsFile.close();
+
+        layout2->addLayout(layout_2,2,1,2,1);
+
+        ui->stackedWidget->setCurrentIndex(4);
 
 
 }
@@ -667,8 +779,13 @@ void MainWindow::selectionForm() {
 
     QPushButton *ok = new QPushButton();
     ok->setText("OK");
-    layout1->addWidget(ok, 6,1);
+    layout1->addWidget(ok, 6,2,1,2);
     connect(ok, &QPushButton::clicked, this, &MainWindow::okClicked);
+
+    QPushButton *cancel = new QPushButton();
+    cancel->setText("cancel");
+    layout1->addWidget(cancel, 6,1);
+    connect(cancel, &QPushButton::clicked, this, &MainWindow::cancelClicked);
 
     QStackedWidget *stackedWidget = ui->stackedWidget;
     QWidget *page4 = stackedWidget->widget(3);

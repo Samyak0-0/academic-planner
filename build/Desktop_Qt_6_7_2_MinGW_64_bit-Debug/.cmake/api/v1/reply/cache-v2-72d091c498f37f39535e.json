@@ -2,42 +2,6 @@
 	"entries" : 
 	[
 		{
-			"name" : "Academic_Planner_BINARY_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "D:/qtt/Academic_Planner/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug"
-		},
-		{
-			"name" : "Academic_Planner_IS_TOP_LEVEL",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "ON"
-		},
-		{
-			"name" : "Academic_Planner_SOURCE_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "D:/qtt/Academic_Planner"
-		},
-		{
 			"name" : "CMAKE_ADDR2LINE",
 			"properties" : 
 			[
@@ -803,7 +767,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "C:/Program Files (x86)/Academic_Planner"
+			"value" : "C:/Program Files (x86)/Routine"
 		},
 		{
 			"name" : "CMAKE_INSTALL_RUNSTATEDIR",
@@ -1111,7 +1075,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "Academic_Planner"
+			"value" : "Routine"
 		},
 		{
 			"name" : "CMAKE_PROJECT_VERSION",
@@ -6474,6 +6438,42 @@
 			"value" : "D:/Qt/6.7.2/mingw_64/lib/cmake/Qt6"
 		},
 		{
+			"name" : "Routine_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "D:/qtt/Academic_Planner/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug"
+		},
+		{
+			"name" : "Routine_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "ON"
+		},
+		{
+			"name" : "Routine_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "D:/qtt/Academic_Planner"
+		},
+		{
 			"name" : "Vulkan_GLSLANG_VALIDATOR_EXECUTABLE",
 			"properties" : 
 			[
@@ -6571,7 +6571,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Program Files (x86)/Academic_Planner"
+			"value" : "C:/Program Files (x86)/Routine"
 		}
 	],
 	"kind" : "cache",

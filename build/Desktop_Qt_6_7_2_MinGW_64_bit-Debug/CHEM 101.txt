@@ -1,8 +1,0 @@
-1 Mole Concept
-1 Properties of solutions
-1 Chemical Equilibrium
-1 Redox Reaction
-1 Electrochemistry
-0 Chemical Kinetics
-1 Catalysis
-1 Nuclear Chemistry

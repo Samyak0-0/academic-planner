@@ -17,6 +17,7 @@ ToDoList::ToDoList(QListWidget *listWidget, QLineEdit *tasktextbox, QPushButton 
     connect(deleteAllButton, &QPushButton::clicked, this, &ToDoList::on_DeleteAllTasksBut_clicked);
 
     //implementattion for checkbobxes
+    listWidget->clear();
     connect(listWidget, &QListWidget::itemChanged, this, &ToDoList::on_ItemChanged);
 
     // Load to-do list data thtrough constructor
