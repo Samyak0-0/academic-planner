@@ -647,8 +647,7 @@ void MainWindow::deleteCourse()
             courseCode[p][q]->setText("+");
             progressBar[p][q]->setMaximumWidth(pageWidth/8);
             progressBar[p][q]->hide();
-
-
+            extendRight[p][q]->hide();
         } else {
 
             rowLayout[p]->addWidget(courseCode[p][q+j-1], 0, q+j-1);
@@ -658,7 +657,7 @@ void MainWindow::deleteCourse()
             courseCode[p][q+j-1]->show();
             progressBar[p][q+j-1]->hide();
             progressBar[p][q+j-1]->setMaximumWidth(pageWidth/8);
-            extendRight[p][q+j-1]->show();
+            extendRight[p][q+j-1]->hide();
         }
     }
 
@@ -678,31 +677,35 @@ void MainWindow::extend(int a, int b)
     p=a;
     q=b;
 
-    for(int k=1; k<=var; k++) {
-        barWidth += pageWidth/8;
+
+    if(courseCode[a][b+1] == "+" || b!=7 ) {
+        for(int k=1; k<=var; k++) {
+            barWidth += pageWidth/8;
+        }
+
+        rowLayout[a]->removeWidget(courseCode[a][b]);
+        rowLayout[a]->removeWidget(progressBar[a][b]);
+        rowLayout[a]->removeWidget(extendRight[a][b]);
+
+        rowLayout[a]->removeWidget(courseCode[a][b+var-1]);
+        rowLayout[a]->removeWidget(progressBar[a][b+var-1]);
+        rowLayout[a]->removeWidget(extendRight[a][b+var-1]);
+
+        courseCode[a][b+var-1]->hide();
+        progressBar[a][b+var-1]->hide();
+        extendRight[a][b+var-1]->hide();
+
+
+        rowLayout[a]->addWidget(courseCode[a][b],0,b, 1, var);
+        rowLayout[a]->addWidget(progressBar[a][b],2,b, 1, var);
+        progressBar[a][b]->setMaximumWidth(barWidth);
+        rowLayout[a]->addWidget(extendRight[a][b],3,b, 1, var);
+
+        code = courseCode[a][b]->text();
+        qDebug()<<a<<b << code;
+        storeTableData();
     }
 
-    rowLayout[a]->removeWidget(courseCode[a][b]);
-    rowLayout[a]->removeWidget(progressBar[a][b]);
-    rowLayout[a]->removeWidget(extendRight[a][b]);
-
-    rowLayout[a]->removeWidget(courseCode[a][b+var-1]);
-    rowLayout[a]->removeWidget(progressBar[a][b+var-1]);
-    rowLayout[a]->removeWidget(extendRight[a][b+var-1]);
-
-    courseCode[a][b+var-1]->hide();
-    progressBar[a][b+var-1]->hide();
-    extendRight[a][b+var-1]->hide();
-
-
-    rowLayout[a]->addWidget(courseCode[a][b],0,b, 1, var);
-    rowLayout[a]->addWidget(progressBar[a][b],2,b, 1, var);
-    progressBar[a][b]->setMaximumWidth(barWidth);
-    rowLayout[a]->addWidget(extendRight[a][b],3,b, 1, var);
-
-    code = courseCode[a][b]->text();
-    qDebug()<<a<<b << code;
-    storeTableData();
 
 }
 
