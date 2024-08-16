@@ -1,14 +1,20 @@
 #include "todolist.h"
-#include <QStandardPaths>
 #include <QListWidgetItem>
+#include <QStandardPaths>
 
-ToDoList::ToDoList(QListWidget *listWidget, QLineEdit *tasktextbox, QPushButton *AddTaskBut, QPushButton *DeleteTaskBut, QPushButton *DeleteAllTaskBut, QObject *parent)
-    : QObject(parent),
-    listWidget(listWidget),
-    taskTextBox(tasktextbox),//task"T"ext"B"ox kind of a label(used eg line82) here and tasktextbox actual object in todopage
-    addButton(AddTaskBut),
-    deleteButton(DeleteTaskBut),
-    deleteAllButton(DeleteAllTaskBut)
+ToDoList::ToDoList(QListWidget *listWidget,
+                   QLineEdit *tasktextbox,
+                   QPushButton *AddTaskBut,
+                   QPushButton *DeleteTaskBut,
+                   QPushButton *DeleteAllTaskBut,
+                   QObject *parent)
+    : QObject(parent)
+    , listWidget(listWidget)
+    , taskTextBox(tasktextbox)
+    , //task"T"ext"B"ox kind of a label(used eg line82) here and tasktextbox actual object in todopage
+    addButton(AddTaskBut)
+    , deleteButton(DeleteTaskBut)
+    , deleteAllButton(DeleteAllTaskBut)
 
 {
     // Connect buttons to their slots
@@ -28,9 +34,10 @@ ToDoList::ToDoList(QListWidget *listWidget, QLineEdit *tasktextbox, QPushButton 
         QTextStream filein(&file);
         while (!filein.atEnd()) {
             QString line = filein.readLine();
-            QStringList parts = line.split("\t"); // Assume that each line is in the format: "text\tcheckState"
+            QStringList parts = line.split(
+                "\t"); // Assume that each line is in the format: "text\tcheckState"
             if (parts.size() == 2) {
-                QListWidgetItem* item = new QListWidgetItem(parts[0], listWidget);
+                QListWidgetItem *item = new QListWidgetItem(parts[0], listWidget);
                 item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
                 item->setCheckState(parts[1] == "1" ? Qt::Checked : Qt::Unchecked);
                 listWidget->addItem(item);
@@ -38,10 +45,10 @@ ToDoList::ToDoList(QListWidget *listWidget, QLineEdit *tasktextbox, QPushButton 
         }
         file.close();
     }
-
 }
 
-ToDoList::~ToDoList() {
+ToDoList::~ToDoList()
+{
     /*
     QFile file(path);
 
@@ -85,26 +92,27 @@ ToDoList::~ToDoList() {
 //todolist function buttons.
 //self explantory but comments are in mainwindow.cpp
 
-void ToDoList::on_AddTaskBut_clicked() {
-
-    QListWidgetItem* item = new QListWidgetItem(taskTextBox->text(), listWidget);
+void ToDoList::on_AddTaskBut_clicked()
+{
+    QListWidgetItem *item = new QListWidgetItem(taskTextBox->text(), listWidget);
     //for checkbox
 
     item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
-    item->setCheckState(Qt::Unchecked);//unchecked intially
+    item->setCheckState(Qt::Unchecked); //unchecked intially
 
     listWidget->addItem(item);
     taskTextBox->clear();
     taskTextBox->setFocus();
-
 }
 
-void ToDoList::on_DeleteTaskBut_clicked() {
-    QListWidgetItem* item = listWidget->takeItem(listWidget->currentRow());
+void ToDoList::on_DeleteTaskBut_clicked()
+{
+    QListWidgetItem *item = listWidget->takeItem(listWidget->currentRow());
     delete item;
 }
 
-void ToDoList::on_DeleteAllTasksBut_clicked() {
+void ToDoList::on_DeleteAllTasksBut_clicked()
+{
     listWidget->clear();
 }
 /*
@@ -135,30 +143,31 @@ void ToDoList::on_ItemChanged(QListWidgetItem *item) {
 */
 //strikethrough works here but not in above code
 
-void ToDoList::on_ItemChanged(QListWidgetItem *item) {
-
-    QFont font = item->font();//font obj declaration
+void ToDoList::on_ItemChanged(QListWidgetItem *item)
+{
+    QFont font = item->font(); //font obj declaration
 
     if (item->checkState() == Qt::Checked) {
         font.setStrikeOut(true);
-        item->setBackground(Qt::lightGray);  //ticked
+        item->setBackground(Qt::lightGray); //ticked
     } else {
         font.setStrikeOut(false);
-        item->setBackground(Qt::white);  //uncheked
+        item->setBackground(Qt::white); //uncheked
     }
     rearrangeItems();
     item->setFont(font);
-
 }
 
-void ToDoList::rearrangeItems() {
-    QList<QListWidgetItem*> checkedItems;
-    QList<QListWidgetItem*> uncheckedItems;
+void ToDoList::rearrangeItems()
+{
+    QList<QListWidgetItem *> checkedItems;
+    QList<QListWidgetItem *> uncheckedItems;
 
     for (int i = listWidget->count() - 1; i >= 0; --i) {
         QListWidgetItem *item = listWidget->takeItem(i);
         if (item->checkState() == Qt::Checked) {
-            checkedItems.prepend(item); //prepend adds the item always to first, so descending i means order is preserved
+            checkedItems.prepend(
+                item); //prepend adds the item always to first, so descending i means order is preserved
         } else {
             uncheckedItems.prepend(item);
         }

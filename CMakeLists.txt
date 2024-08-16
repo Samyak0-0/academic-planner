@@ -26,6 +26,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         selection_page.h selection_page.cpp selection_page.ui
         todolist.h
         todolist.cpp
+        images.qrc
+
+
+
 
     )
 # Define target properties for Android with Qt 6 as:

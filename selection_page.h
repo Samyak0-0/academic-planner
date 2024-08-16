@@ -2,9 +2,8 @@
 #define SELECTION_PAGE_H
 
 #include <QDialog>
-#include <QtCore>
 #include <QLineEdit>
-
+#include <QtCore>
 
 namespace Ui {
 class selection_page;

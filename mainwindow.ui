@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Academic Planner</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="images.qrc">
+    <normaloff>:/resoruces/logos/routineicon.png</normaloff>:/resoruces/logos/routineicon.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
@@ -102,7 +106,7 @@
               <string/>
              </property>
              <property name="pixmap">
-              <pixmap>images/routineicon.png</pixmap>
+              <pixmap resource="images.qrc">:/resoruces/logos/routineicon.png</pixmap>
              </property>
              <property name="scaledContents">
               <bool>true</bool>
@@ -167,8 +171,8 @@ QPushButton:checked{
               <string> Routine</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>images/syllabusicon.png</normaloff>images/syllabusicon.png</iconset>
+              <iconset resource="images.qrc">
+               <normaloff>:/resoruces/logos/tableicon.png</normaloff>:/resoruces/logos/tableicon.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -219,8 +223,8 @@ QPushButton:checked{
               <string> Syllabus</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>images/syllabusicon.png</normaloff>images/syllabusicon.png</iconset>
+              <iconset resource="images.qrc">
+               <normaloff>:/resoruces/logos/syllabusicon.png</normaloff>:/resoruces/logos/syllabusicon.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -271,8 +275,8 @@ QPushButton:checked{
               <string> ToDo</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>images/todolisticon.png</normaloff>images/todolisticon.png</iconset>
+              <iconset resource="images.qrc">
+               <normaloff>:/resoruces/logos/todolisticon.png</normaloff>:/resoruces/logos/todolisticon.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -315,7 +319,7 @@ border-radius:30px
 }</string>
         </property>
         <property name="currentIndex">
-         <number>4</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="RoutinePage"/>
         <widget class="QWidget" name="ToDoPage">
@@ -487,6 +491,8 @@ color:black;
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/resoruces">
+        <file>logos/routineicon.png</file>
+        <file>logos/syllabusicon.png</file>
+        <file>logos/tableicon.png</file>
+        <file>logos/todolisticon.png</file>
+    </qresource>
+    <qresource prefix="/new/prefix1"/>
+</RCC>

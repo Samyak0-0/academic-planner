@@ -1,17 +1,17 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QGridLayout>
+#include <QLabel>
+#include <QListWidget>
 #include <QMainWindow>
+#include <QProgressBar>
 #include <QPushButton>
-#include <QtCore>
+#include <QSet>
 #include <QStackedWidget>
 #include <QStandardPaths>
+#include <QtCore>
 #include "todolist.h"
-#include <QListWidget>
-#include <QLabel>
-#include <QProgressBar>
-#include <QGridLayout>
-#include <QSet>
 
 QT_BEGIN_NAMESPACE
 
@@ -34,10 +34,6 @@ public:
 
     void checkBoxChanged(int value, QString syllCode, int row);
 
-
-
-
-
 private slots:
     void on_RoutineBut_clicked();
 
@@ -59,12 +55,11 @@ private slots:
 
     void storeTableData();
 
-    void courseCodeClicked(int a, int b );
+    void courseCodeClicked(int a, int b);
 
     void deleteCourse();
 
     void extend(int a, int b);
-
 
     /*
     void on_AddTaskBut_clicked();
@@ -76,7 +71,6 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
 
 private:
-
     Ui::MainWindow *ui;
     ToDoList *toDoList;
     void TableWidgetDisplay();
@@ -87,7 +81,7 @@ private:
     QString path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)
                    + "\\todofile.txt";
     QString routinePath = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)
-                   + "\\routinePath.txt";
+                          + "\\routinePath.txt";
 
     void selectionForm();
     QLineEdit *courseName;

@@ -63,6 +63,9 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
         MainWindow->resize(952, 746);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/resoruces/logos/routineicon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        MainWindow->setWindowIcon(icon);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         centralwidget->setStyleSheet(QString::fromUtf8("background-color:rgb(206, 217, 255);\n"
@@ -100,7 +103,7 @@ public:
         label_2->setMaximumSize(QSize(50, 50));
         label_2->setStyleSheet(QString::fromUtf8("color:black\n"
 ""));
-        label_2->setPixmap(QPixmap(QString::fromUtf8("images/routineicon.png")));
+        label_2->setPixmap(QPixmap(QString::fromUtf8(":/resoruces/logos/routineicon.png")));
         label_2->setScaledContents(true);
 
         horizontalLayout->addWidget(label_2);
@@ -138,9 +141,9 @@ public:
 "	background-color:rgb(254, 255, 244);\n"
 "	color:rgb(43, 48, 44)\n"
 "}"));
-        QIcon icon;
-        icon.addFile(QString::fromUtf8("images/syllabusicon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
-        RoutineBut->setIcon(icon);
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/resoruces/logos/tableicon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        RoutineBut->setIcon(icon1);
         RoutineBut->setIconSize(QSize(38, 38));
         RoutineBut->setCheckable(true);
         RoutineBut->setAutoExclusive(true);
@@ -164,7 +167,9 @@ public:
 "	background-color:rgb(254, 255, 244);\n"
 "	color:rgb(43, 48, 44)\n"
 "}"));
-        SyllabusBut->setIcon(icon);
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/resoruces/logos/syllabusicon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        SyllabusBut->setIcon(icon2);
         SyllabusBut->setIconSize(QSize(34, 34));
         SyllabusBut->setCheckable(true);
         SyllabusBut->setAutoExclusive(true);
@@ -188,9 +193,9 @@ public:
 "	background-color:rgb(254, 255, 244);\n"
 "	color:rgb(43, 48, 44)\n"
 "}"));
-        QIcon icon1;
-        icon1.addFile(QString::fromUtf8("images/todolisticon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
-        ToDoBut->setIcon(icon1);
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/resoruces/logos/todolisticon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        ToDoBut->setIcon(icon3);
         ToDoBut->setIconSize(QSize(34, 34));
         ToDoBut->setCheckable(true);
         ToDoBut->setAutoExclusive(true);
@@ -323,7 +328,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(4);
+        stackedWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -331,7 +336,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Academic Planner", nullptr));
         label_2->setText(QString());
         RoutineBut->setText(QCoreApplication::translate("MainWindow", " Routine", nullptr));
         SyllabusBut->setText(QCoreApplication::translate("MainWindow", " Syllabus", nullptr));
