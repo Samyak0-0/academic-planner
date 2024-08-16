@@ -614,41 +614,31 @@ void MainWindow::deleteCourse()
 
 void MainWindow::extend(int a, int b)
 {
-    ++rowSpan[a][b];
-    int var = rowSpan[a][b];
-    int barWidth = 0;
-    p = a;
-    q = b;/*
-    int col = b+ rowSpan[a][b]-1;
-    qDebug()<<rowSpan[a][b]<<"-------------";*/
-    // if(courseCode[a][b])
-    // if (courseCode[a][col]->text() == "+" && b != 7) {
-        for (int k = 1; k <= var; k++) {
-            barWidth += pageWidth / 8;
-        }
 
-        rowLayout[a]->removeWidget(courseCode[a][b]);
-        rowLayout[a]->removeWidget(progressBar[a][b]);
-        rowLayout[a]->removeWidget(extendRight[a][b]);
+    if (b + rowSpan[a][b] >= 8) {// if goes out of bound
+        return;
+    }
 
-        rowLayout[a]->removeWidget(courseCode[a][b + var - 1]);
-        rowLayout[a]->removeWidget(progressBar[a][b + var - 1]);
-        rowLayout[a]->removeWidget(extendRight[a][b + var - 1]);
+    if (courseCode[a][b + rowSpan[a][b]]->text() != "+") {
+        return;  // no overlapp witht the adjccaent textt
+    }
 
-        courseCode[a][b + var - 1]->hide();
-        progressBar[a][b + var - 1]->hide();
-        extendRight[a][b + var - 1]->hide();
+    rowLayout[a]->removeWidget(courseCode[a][b + rowSpan[a][b]]);
+    rowLayout[a]->removeWidget(progressBar[a][b + rowSpan[a][b]]);
+    rowLayout[a]->removeWidget(extendRight[a][b + rowSpan[a][b]]);
+    courseCode[a][b + rowSpan[a][b]]->hide();
+    progressBar[a][b + rowSpan[a][b]]->hide();
+    extendRight[a][b + rowSpan[a][b]]->hide();
 
-        rowLayout[a]->addWidget(courseCode[a][b], 0, b, 1, var);
-        rowLayout[a]->addWidget(progressBar[a][b], 2, b, 1, var);
-        progressBar[a][b]->setMaximumWidth(barWidth);
-        rowLayout[a]->addWidget(extendRight[a][b], 3, b, 1, var);
+    rowSpan[a][b]++; //extending row span
 
-        code = courseCode[a][b]->text();
-        qDebug() << a << b << code;
-        storeTableData();
-    // }
+    int newWidth = pageWidth / 8 * rowSpan[a][b]; // for progress bar
+    progressBar[a][b]->setMaximumWidth(newWidth);
+
+    //uppdate
+    storeTableData();
 }
+
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
