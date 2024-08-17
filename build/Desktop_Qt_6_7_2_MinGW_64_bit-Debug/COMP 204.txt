@@ -1,7 +1,0 @@
-0 Chapter One: Introduction to data communication and networking
-0 Chapter Two: Physical Layer
-0 Chapter Three: Data Link Layer
-0 Chapter Four: Network Layer
-0 Chapter Five: Transport Layer
-0 Chapter Six: Application Layer
-0 Chapter Seven: Cryptography and Network Security
