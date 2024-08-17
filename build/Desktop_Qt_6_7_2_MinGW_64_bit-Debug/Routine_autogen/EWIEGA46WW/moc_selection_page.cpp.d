@@ -1,5 +1,5 @@
-D:/ProjectQt/AP/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Routine_autogen/EWIEGA46WW/moc_selection_page.cpp: D:/ProjectQt/AP/selection_page.h \
-  D:/ProjectQt/AP/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Routine_autogen/moc_predefs.h \
+D:/academic-planner/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Routine_autogen/EWIEGA46WW/moc_selection_page.cpp: D:/academic-planner/selection_page.h \
+  D:/academic-planner/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Routine_autogen/moc_predefs.h \
   C:/Qt/6.7.2/mingw_64/include/QtCore/QDeadlineTimer \
   C:/Qt/6.7.2/mingw_64/include/QtCore/QHash \
   C:/Qt/6.7.2/mingw_64/include/QtCore/QList \

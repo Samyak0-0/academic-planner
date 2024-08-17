@@ -82,7 +82,7 @@ public:
         sizePolicy.setHeightForWidth(sidebar->sizePolicy().hasHeightForWidth());
         sidebar->setSizePolicy(sizePolicy);
         sidebar->setMaximumSize(QSize(250, 10000));
-        sidebar->setLayoutDirection(Qt::LeftToRight);
+        sidebar->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         sidebar->setStyleSheet(QString::fromUtf8("QWidget{\n"
 "	background-color:rgb(206, 217, 255)\n"
 "}"));
@@ -215,6 +215,7 @@ public:
         stackedWidget = new QStackedWidget(centralwidget);
         stackedWidget->setObjectName("stackedWidget");
         stackedWidget->setStyleSheet(QString::fromUtf8("QWidget{\n"
+"color: black;\n"
 "background-color:rgb(255, 238, 239);\n"
 "border-radius:30px\n"
 "}"));
@@ -253,6 +254,8 @@ public:
 "background-color:rgb(255, 255, 255);\n"
 "font:bold;\n"
 "color:black;\n"
+"font-size: 25px;\n"
+"\n"
 ""));
 
         horizontalLayout_4->addWidget(AddTaskBut);
@@ -341,7 +344,7 @@ public:
         RoutineBut->setText(QCoreApplication::translate("MainWindow", " Routine", nullptr));
         SyllabusBut->setText(QCoreApplication::translate("MainWindow", " Syllabus", nullptr));
         ToDoBut->setText(QCoreApplication::translate("MainWindow", " ToDo", nullptr));
-        AddTaskBut->setText(QCoreApplication::translate("MainWindow", "AddTask", nullptr));
+        AddTaskBut->setText(QCoreApplication::translate("MainWindow", "+", nullptr));
         DeleteTaskBut->setText(QCoreApplication::translate("MainWindow", "Delete Task", nullptr));
         DeleteAllTasksBut->setText(QCoreApplication::translate("MainWindow", "Delete All Tasks", nullptr));
     } // retranslateUi

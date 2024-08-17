@@ -1,4 +1,0 @@
-0 Introduction
-0 8-Bit Microprocessor
-0 16-Bit Microprocessor
-0 I/O Interfaces

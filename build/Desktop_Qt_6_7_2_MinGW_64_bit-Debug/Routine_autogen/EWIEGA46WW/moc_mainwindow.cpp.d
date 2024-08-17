@@ -1,5 +1,5 @@
-D:/ProjectQt/AP/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Routine_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/ProjectQt/AP/mainwindow.h \
-  D:/ProjectQt/AP/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Routine_autogen/moc_predefs.h \
+D:/academic-planner/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Routine_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/academic-planner/mainwindow.h \
+  D:/academic-planner/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Routine_autogen/moc_predefs.h \
   C:/Qt/6.7.2/mingw_64/include/QtCore/QDeadlineTimer \
   C:/Qt/6.7.2/mingw_64/include/QtCore/QFile \
   C:/Qt/6.7.2/mingw_64/include/QtCore/QHash \
@@ -674,4 +674,4 @@ D:/ProjectQt/AP/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Routine_autogen/EWIEGA
   C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/vadefs.h \
   C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wchar.h \
   C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wctype.h \
-  D:/ProjectQt/AP/todolist.h
+  D:/academic-planner/todolist.h

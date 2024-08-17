@@ -1,5 +1,5 @@
-D:/ProjectQt/AP/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Routine_autogen/EWIEGA46WW/moc_todolist.cpp: D:/ProjectQt/AP/todolist.h \
-  D:/ProjectQt/AP/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Routine_autogen/moc_predefs.h \
+D:/academic-planner/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Routine_autogen/EWIEGA46WW/moc_todolist.cpp: D:/academic-planner/todolist.h \
+  D:/academic-planner/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Routine_autogen/moc_predefs.h \
   C:/Qt/6.7.2/mingw_64/include/QtCore/QFile \
   C:/Qt/6.7.2/mingw_64/include/QtCore/QObject \
   C:/Qt/6.7.2/mingw_64/include/QtCore/QStandardPaths \

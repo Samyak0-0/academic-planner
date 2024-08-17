@@ -1,0 +1,48 @@
+0 Definition of control systems
+0 History and examples of control systems
+0 Concept of feedback and closed-loop control
+0 Open-loop versus closed-loop systems
+0 Linear system
+0 Time-invariant system
+0 Mathematical modeling of mechanical systems and electrical systems
+0 Mathematical modeling of fluid systems
+0 Laplace transform definitions
+0 Transfer functions
+0 Poles and zeros
+0 Mathematical block diagrams
+0 Block diagram reduction
+0 Transient response analysis of first order systems
+0 Transient response analysis of second order systems
+0 Transient response analysis of higher order systems
+0 Concept of dominant poles
+0 Steady-state error and type of systems
+0 Stability analysis based on impulse response
+0 Routh-Hurwitz stability criterion
+0 Introduction to process control
+0 Control system evaluation
+0 Analog and digital processing
+0 Sensor time response
+0 Introduction of PID controllers
+0 Design of P controller
+0 Principles of analog signal conditioning
+0 Passive circuits
+0 Operational amplifiers
+0 OP-amp circuits in instrumentation
+0 Design guidelines for analog signal conditioning
+0 Review of digital fundamentals
+0 AD and DA converters
+0 Data-acquisition systems
+0 Characteristics of digital data
+0 Thermal sensors and design considerations
+0 Mechanical sensors including displacement, location, position, and proximity sensors
+0 Strain sensors
+0 Motion sensors
+0 Pressure sensors
+0 Flow sensors
+0 Optical encoder
+0 Final control operation
+0 Signal conversions
+0 Power electronics
+0 Actuators (pneumatic, hydraulic, and electrical drives)
+0 Control elements
+0 Examples of control systems

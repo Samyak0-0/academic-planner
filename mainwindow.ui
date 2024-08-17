@@ -40,7 +40,7 @@
          </size>
         </property>
         <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
         </property>
         <property name="styleSheet">
          <string notr="true">QWidget{
@@ -74,7 +74,7 @@
            <item>
             <spacer name="horizontalSpacer">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -116,7 +116,7 @@
            <item>
             <spacer name="horizontalSpacer_2">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -295,7 +295,7 @@ QPushButton:checked{
            <item>
             <spacer name="verticalSpacer">
              <property name="orientation">
-              <enum>Qt::Vertical</enum>
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -314,6 +314,7 @@ QPushButton:checked{
        <widget class="QStackedWidget" name="stackedWidget">
         <property name="styleSheet">
          <string notr="true">QWidget{
+color: black;
 background-color:rgb(255, 238, 239);
 border-radius:30px
 }</string>
@@ -379,10 +380,12 @@ border-radius: 10px;
 background-color:rgb(255, 255, 255);
 font:bold;
 color:black;
+font-size: 25px;
+
 </string>
               </property>
               <property name="text">
-               <string>AddTask</string>
+               <string>+</string>
               </property>
              </widget>
             </item>
@@ -413,7 +416,7 @@ border: 2px solid gray;
             <item>
              <spacer name="horizontalSpacer_3">
               <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+               <enum>Qt::Orientation::Horizontal</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>

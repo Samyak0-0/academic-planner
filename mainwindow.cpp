@@ -46,6 +46,80 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    qApp->setStyleSheet(R"(
+        QMainWindow {
+            background-color: #f0f0f0;
+        }
+
+        QLabel {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 14px;
+            color: #333;
+        }
+
+        QPushButton {
+            background-color: #0078D7;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 14px;
+            border-radius: 4px;
+            margin: 5px 0;
+        }
+
+        QPushButton:hover {
+            background-color: #005A9E;
+        }
+
+        QPushButton:pressed {
+            background-color: #004578;
+        }
+
+        QProgressBar {
+            border: 1px solid #a3a7ad;
+            border-radius: 4px;
+            background-color: #dce1e6;
+            height: 10px;
+        }
+
+        QProgressBar::chunk {
+            background-color: #4CAF50;
+            width: 10px;
+            margin: 1px;
+        }
+
+        QListWidget {
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 5px;
+        }
+
+        QCheckBox {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 14px;
+            color: #333;
+            margin-left: 5px;
+        }
+
+        QLineEdit, QComboBox {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 14px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 5px 0;
+            background-color: #fff;
+        }
+
+        QStackedWidget {
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    )");
+
     toDoList = new ToDoList(ui->listWidget,
                             ui->tasktextbox,
                             ui->AddTaskBut,

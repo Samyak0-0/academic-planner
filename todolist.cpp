@@ -16,7 +16,69 @@ ToDoList::ToDoList(QListWidget *listWidget,
     , deleteButton(DeleteTaskBut)
     , deleteAllButton(DeleteAllTaskBut)
 
-{
+
+    {
+        // Set up styles for the list widget, text box, and buttons
+        listWidget->setStyleSheet("QListWidget {"
+                                   "font-family: 'Segoe UI', sans-serif;"
+                                  "padding-left:15px;"
+                                  "border-radius: 5px;"
+                                  "padding: 10px;"
+                                  "background-color: #F0F4F8;"
+                                  "font-size: 14px;"
+                                  "color: #333;"
+                                  "}");
+
+        taskTextBox->setStyleSheet("QLineEdit {"
+                                    "font-family: 'Segoe UI', sans-serif;"
+                                    "padding-left:30px;"
+                                   "border-radius: 5px;"
+                                   "padding: 5px;"
+                                   "font-size: 14px;"
+                                   "color: #333;"
+                                   "background-color: #FFFFFF;"
+                                   "}");
+
+        addButton->setStyleSheet("QPushButton {"
+                                 "font-size:25px;"
+                                "font-weight: 1000;"
+                                 "font-family: 'Segoe UI', sans-serif;"
+                                 "background-color: #4CAF50;"
+                                 "color: black;"
+                                 "border-radius: 5px;"
+                                 "padding: 8px 16px;"
+                                 "font-size: 14px;"
+                                 "}"
+                                 "QPushButton:hover {"
+                                 "background-color: #45A049;"
+                                 "}");
+
+        deleteButton->setStyleSheet("QPushButton {"
+                                    "font-weight:bold;"
+                                    "font-family: 'Segoe UI', sans-serif;"
+                                    "background-color: 	#fdfdff;"
+                                    "color: black;"
+                                    "border: 2px solid grey;"
+                                    "border-radius: 10px;"
+                                    "padding: 8px 16px;"
+                                    "font-size: 14px;"
+                                    "}"
+                                    "QPushButton:hover {"
+                                    "background-color: #e5e5e5;"
+                                    "}");
+
+        deleteAllButton->setStyleSheet("QPushButton {"
+                                        "font-weight:bold;"
+                                     "font-family: 'Segoe UI', sans-serif;"
+                                       "background-color: #FFC107;"
+                                       "color: black;"
+                                       "border-radius: 10px;"
+                                       "padding: 8px 16px;"
+                                       "font-size: 14px;"
+                                       "}"
+                                       "QPushButton:hover {"
+                                       "background-color: #FFB300;"
+                                       "}");
     // Connect buttons to their slots
     connect(addButton, &QPushButton::clicked, this, &ToDoList::on_AddTaskBut_clicked);
     connect(deleteButton, &QPushButton::clicked, this, &ToDoList::on_DeleteTaskBut_clicked);

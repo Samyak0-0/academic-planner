@@ -1,9 +1,0 @@
-1 Introduction to Object Oriented Programming
-1 Introducing C++
-1 Classes and Objects
-1 Object Constructions and Destructions
-1 Operator Overloading
-1 Inheritance
-1 Polymorphism
-1 Template
-0 Exception Handling
