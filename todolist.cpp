@@ -40,7 +40,7 @@ ToDoList::ToDoList(QListWidget *listWidget,
                                    "}");
 
         addButton->setStyleSheet("QPushButton {"
-                                 "font-size:25px;"
+                                 "font-size:100px;"
                                 "font-weight: 1000;"
                                  "font-family: 'Segoe UI', sans-serif;"
                                  "background-color: #4CAF50;"

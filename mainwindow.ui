@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>952</width>
-    <height>746</height>
+    <width>1191</width>
+    <height>699</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -137,6 +137,22 @@
             <number>10</number>
            </property>
            <item>
+            <spacer name="verticalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Policy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>100</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
             <widget class="QPushButton" name="RoutineBut">
              <property name="minimumSize">
               <size>
@@ -147,18 +163,19 @@
              <property name="font">
               <font>
                <family>Algerian</family>
-               <pointsize>12</pointsize>
+               <pointsize>-1</pointsize>
                <italic>false</italic>
                <bold>true</bold>
               </font>
              </property>
              <property name="styleSheet">
               <string notr="true">QPushButton{
+	font-size:25px;
 	padding:6px;
 	border:none;
-	text-align:left;
+	text-align:center;
 	font:bold;
-	color:rgb(62, 44, 70);
+	color:black;
 	padding-left:18px;
 	border-radius:16px;
 }
@@ -199,18 +216,19 @@ QPushButton:checked{
              <property name="font">
               <font>
                <family>Algerian</family>
-               <pointsize>12</pointsize>
+               <pointsize>-1</pointsize>
                <italic>false</italic>
                <bold>true</bold>
               </font>
              </property>
              <property name="styleSheet">
               <string notr="true">QPushButton{
+	font-size: 25px;
 	padding:7px;
 	border:none;
-	text-align:left;
+	text-align:center;
 	font:bold;
-	color:rgb(62, 44, 70);
+	color:black;
 	padding-left:18px;
 	border-radius:16px;
 }
@@ -251,19 +269,20 @@ QPushButton:checked{
              <property name="font">
               <font>
                <family>Algerian</family>
-               <pointsize>12</pointsize>
+               <pointsize>-1</pointsize>
                <italic>false</italic>
                <bold>true</bold>
               </font>
              </property>
              <property name="styleSheet">
               <string notr="true">QPushButton{
+	font-size: 25px;
 	padding:7px;
 	border:none;
-	text-align:left;
+	text-align:center;
 	font:bold;
-	color:rgb(62, 44, 70);
-	padding-left:18px;
+	color:black;
+	padding-right: 25px;
 	border-radius:16px;
 }
 QPushButton:checked{
@@ -272,7 +291,7 @@ QPushButton:checked{
 }</string>
              </property>
              <property name="text">
-              <string> ToDo</string>
+              <string> To-Do</string>
              </property>
              <property name="icon">
               <iconset resource="images.qrc">
@@ -314,6 +333,7 @@ QPushButton:checked{
        <widget class="QStackedWidget" name="stackedWidget">
         <property name="styleSheet">
          <string notr="true">QWidget{
+margin-left: 10px;
 color: black;
 background-color:rgb(255, 238, 239);
 border-radius:30px

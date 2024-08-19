@@ -38,6 +38,7 @@ public:
     QLabel *label_2;
     QSpacerItem *horizontalSpacer_2;
     QVBoxLayout *verticalLayout;
+    QSpacerItem *verticalSpacer_2;
     QPushButton *RoutineBut;
     QPushButton *SyllabusBut;
     QPushButton *ToDoBut;
@@ -62,7 +63,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(952, 746);
+        MainWindow->resize(1191, 699);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/resoruces/logos/routineicon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         MainWindow->setWindowIcon(icon);
@@ -119,21 +120,25 @@ public:
         verticalLayout->setSpacing(22);
         verticalLayout->setObjectName("verticalLayout");
         verticalLayout->setContentsMargins(-1, 10, -1, -1);
+        verticalSpacer_2 = new QSpacerItem(20, 100, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Fixed);
+
+        verticalLayout->addItem(verticalSpacer_2);
+
         RoutineBut = new QPushButton(sidebar);
         RoutineBut->setObjectName("RoutineBut");
         RoutineBut->setMinimumSize(QSize(30, 20));
         QFont font;
         font.setFamilies({QString::fromUtf8("Algerian")});
-        font.setPointSize(12);
         font.setBold(true);
         font.setItalic(false);
         RoutineBut->setFont(font);
         RoutineBut->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	font-size:25px;\n"
 "	padding:6px;\n"
 "	border:none;\n"
-"	text-align:left;\n"
+"	text-align:center;\n"
 "	font:bold;\n"
-"	color:rgb(62, 44, 70);\n"
+"	color:black;\n"
 "	padding-left:18px;\n"
 "	border-radius:16px;\n"
 "}\n"
@@ -155,11 +160,12 @@ public:
         SyllabusBut->setMinimumSize(QSize(30, 20));
         SyllabusBut->setFont(font);
         SyllabusBut->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	font-size: 25px;\n"
 "	padding:7px;\n"
 "	border:none;\n"
-"	text-align:left;\n"
+"	text-align:center;\n"
 "	font:bold;\n"
-"	color:rgb(62, 44, 70);\n"
+"	color:black;\n"
 "	padding-left:18px;\n"
 "	border-radius:16px;\n"
 "}\n"
@@ -181,12 +187,13 @@ public:
         ToDoBut->setMinimumSize(QSize(40, 30));
         ToDoBut->setFont(font);
         ToDoBut->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	font-size: 25px;\n"
 "	padding:7px;\n"
 "	border:none;\n"
-"	text-align:left;\n"
+"	text-align:center;\n"
 "	font:bold;\n"
-"	color:rgb(62, 44, 70);\n"
-"	padding-left:18px;\n"
+"	color:black;\n"
+"	padding-right: 25px;\n"
 "	border-radius:16px;\n"
 "}\n"
 "QPushButton:checked{\n"
@@ -215,6 +222,7 @@ public:
         stackedWidget = new QStackedWidget(centralwidget);
         stackedWidget->setObjectName("stackedWidget");
         stackedWidget->setStyleSheet(QString::fromUtf8("QWidget{\n"
+"margin-left: 10px;\n"
 "color: black;\n"
 "background-color:rgb(255, 238, 239);\n"
 "border-radius:30px\n"
@@ -343,7 +351,7 @@ public:
         label_2->setText(QString());
         RoutineBut->setText(QCoreApplication::translate("MainWindow", " Routine", nullptr));
         SyllabusBut->setText(QCoreApplication::translate("MainWindow", " Syllabus", nullptr));
-        ToDoBut->setText(QCoreApplication::translate("MainWindow", " ToDo", nullptr));
+        ToDoBut->setText(QCoreApplication::translate("MainWindow", " To-Do", nullptr));
         AddTaskBut->setText(QCoreApplication::translate("MainWindow", "+", nullptr));
         DeleteTaskBut->setText(QCoreApplication::translate("MainWindow", "Delete Task", nullptr));
         DeleteAllTasksBut->setText(QCoreApplication::translate("MainWindow", "Delete All Tasks", nullptr));

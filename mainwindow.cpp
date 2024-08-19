@@ -52,9 +52,10 @@ MainWindow::MainWindow(QWidget *parent)
         }
 
         QLabel {
+
             font-family: 'Segoe UI', sans-serif;
             font-size: 14px;
-            color: #333;
+            color: black;
         }
 
         QPushButton {
@@ -541,7 +542,8 @@ void MainWindow::courseCodeClicked(int a, int b)
 
     QString cCode = courseCode[a][b]->text();
     QLabel *courseCode0 = new QLabel(this);
-    courseCode0->setText(courseCode[a][b]->text());
+    courseCode0->setText(courseCode[a][b]->text());\
+
 
     // QLabel *assignment0 = new QLabel(this);
     // assignment0->setText("Assignment");
@@ -571,17 +573,36 @@ void MainWindow::courseCodeClicked(int a, int b)
 
     QLabel *syllabus0 = new QLabel(this);
     syllabus0->setText("Syllabus");
+courseCode0->setStyleSheet("font-size: 50px; color: #333; font-weight: bold; padding-left: 50px;");
+    syllabus0->setStyleSheet("font-size: 16px; color: #666; padding-left: 50px; font-size: 50px;");
 
     layout2->addWidget(courseCode0, 0, 1);
     // layout2->addWidget(assignment0, 1, 1);
     layout2->addWidget(syllabus0, 1, 1);
 
     QPushButton *ok = new QPushButton(this);
-    ok->setText("ok");
+    ok->setText("Close");
     connect(ok, &QPushButton::clicked, this, &MainWindow::on_ok_clicked);
 
     QPushButton *deleteBtn = new QPushButton(this);
-    deleteBtn->setText("delete");
+    deleteBtn->setText("Delete");
+    ok->setStyleSheet(
+        " QPushButton{font-family: 'Segoe UI', sans-serif; font-size:20px; font-weight: bold; color: black;  border-radius: 10px; margin-top: 200px; background-color:#fdfdff; border: 2px solid grey;} QPushButton:hover {"
+                                    "background-color: #e5e5e5;"
+                                    "}");
+    deleteBtn->setStyleSheet(
+        "QPushButton {"
+        "font-weight:bold;"
+        "font-family: 'Segoe UI', sans-serif;"
+        "background-color: #FFC107;"
+        "color: black;"
+        "border-radius: 10px;"
+        "padding: 10px 100px;"
+        "font-size: 14px; margin-top: 200px; font-size:20px "
+        "}"
+        "QPushButton:hover {"
+        "background-color: #FFB300;"
+        "}");
 
     layout2->addWidget(ok, 3, 1, 2, 1);
     layout2->addWidget(deleteBtn, 3, 2, 2, 1);
@@ -605,6 +626,11 @@ void MainWindow::courseCodeClicked(int a, int b)
             line.remove(0, 2);
 
             QCheckBox *checkBox = new QCheckBox(this);
+            checkBox->setStyleSheet(
+                "QCheckBox {"
+                "   spacing: 20px;"                 // Space between checkbox and text
+                "   font-size: 30px;"              // Font size of the text
+                );
             if (numVal.toInt()) {
                 checkBox->setChecked(true);
             }
@@ -620,6 +646,7 @@ void MainWindow::courseCodeClicked(int a, int b)
 
             QLabel *topicsLabel = new QLabel(this);
             topicsLabel->setText(line);
+            topicsLabel->setStyleSheet(" padding: 0px; position: fixed; padding-right: 400px");
             layout_2->addWidget(topicsLabel, row, 1);
         }
     }

@@ -1,10 +1,10 @@
-0 Introduction
-0 C Fundamentals
-0 C Operators
-0 Writing a Program in C (Data Input and Output)
-0 Control Structure
-0 Function
-0 The Scope of Variable
-0 Array
-0 Pointer
-0 Program Structure
+1 Introduction
+1 C Fundamentals
+1 C Operators
+1 Writing a Program in C (Data Input and Output)
+1 Control Structure
+1 Function
+1 The Scope of Variable
+1 Array
+1 Pointer
+1 Program Structure

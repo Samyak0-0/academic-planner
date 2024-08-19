@@ -1,4 +1,4 @@
-0 Chapter One: Introduction to data communication and networking
+1 Chapter One: Introduction to data communication and networking
 0 Chapter Two: Physical Layer
 0 Chapter Three: Data Link Layer
 0 Chapter Four: Network Layer
