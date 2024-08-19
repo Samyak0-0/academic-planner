@@ -219,6 +219,7 @@ void MainWindow::on_SyllabusBut_clicked()
 
 int rowSpan[8][8];
 
+
 void MainWindow::TableWidgetDisplay()
 {
     QGridLayout *layout = new QGridLayout(this);
@@ -247,6 +248,7 @@ void MainWindow::TableWidgetDisplay()
 
     for (int i = 0; i <= 7; i++) {
         rowLayout[i] = new QGridLayout(this);
+        rowLayout[i]->setVerticalSpacing(0);
 
         for (int j = 0; j <= 7; j++) {
             courseCode[i][j] = new QPushButton("courseCode", this);

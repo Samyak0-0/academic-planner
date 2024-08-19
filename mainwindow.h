@@ -13,6 +13,7 @@
 #include <QtCore>
 #include "todolist.h"
 
+
 QT_BEGIN_NAMESPACE
 
 namespace Ui {
@@ -33,6 +34,8 @@ public:
     void syllabusPageClicked(QSet<QString> syllabusCodesSetParam);
 
     void checkBoxChanged(int value, QString syllCode, int row);
+
+
 
 private slots:
     void on_RoutineBut_clicked();

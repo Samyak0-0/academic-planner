@@ -1,0 +1,12 @@
+# ninja log v6
+10	2610	7455820343171091	Routine_autogen/timestamp	d175ba5bed9c094
+2865	3353	7455820346643206	CMakeFiles/Routine.dir/Routine_autogen/EWIEGA46WW/qrc_images.cpp.obj	8f7633584984505c
+10	2610	7455820343171091	Routine_autogen/mocs_compilation.cpp	d175ba5bed9c094
+10	2610	7455820343171091	E:/qtt/academic-planner/build/Qt_6_7_2_in_PATH_mingw_64_temporary-Debug/Routine_autogen/timestamp	d175ba5bed9c094
+2621	2827	7455820346081982	E:/qtt/academic-planner/build/Qt_6_7_2_in_PATH_mingw_64_temporary-Debug/Routine_autogen/EWIEGA46WW/qrc_images.cpp	a4777dafbd02cbe8
+10	2610	7455820343171091	E:/qtt/academic-planner/build/Qt_6_7_2_in_PATH_mingw_64_temporary-Debug/Routine_autogen/mocs_compilation.cpp	d175ba5bed9c094
+2621	2827	7455820346081982	Routine_autogen/EWIEGA46WW/qrc_images.cpp	a4777dafbd02cbe8
+2858	8489	7455820346568678	CMakeFiles/Routine.dir/todolist.cpp.obj	b7e6082ed887ef22
+2834	11203	7455820346329247	CMakeFiles/Routine.dir/main.cpp.obj	c75ec26bf0edad1a
+2827	11369	7455820346262941	CMakeFiles/Routine.dir/Routine_autogen/mocs_compilation.cpp.obj	303c2cd701a0346a
+2849	13371	7455820346482627	CMakeFiles/Routine.dir/selection_page.cpp.obj	448b2e333efc8981

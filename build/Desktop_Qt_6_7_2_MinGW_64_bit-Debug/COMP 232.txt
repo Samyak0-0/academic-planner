@@ -1,8 +1,0 @@
-0 Introduction
-0 Database Design
-0 Relational Model
-0 Relational Database Design
-0 Transactions
-0 Concurrency Control
-0 Database Recovery Techniques
-0 New Trends in Database
