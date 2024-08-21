@@ -336,7 +336,6 @@ QPushButton:checked{
 margin-left: 10px;
 color: black;
 background-color:rgb(255, 238, 239);
-border-radius:30px
 }</string>
         </property>
         <property name="currentIndex">
@@ -426,7 +425,6 @@ padding-top:10px;
 padding-left:10px;
 background:rgb(255, 251, 251);
 border: 2px solid gray;
- border-radius: 25px;
 }</string>
             </property>
            </widget>

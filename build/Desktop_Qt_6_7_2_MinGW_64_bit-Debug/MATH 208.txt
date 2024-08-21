@@ -1,0 +1,11 @@
+1 Introduction to Statistics and Data Description
+1 Probability
+1 One Dimensional Random Variables
+0 Functions of One Random Variable and Mathematical Expectation
+0 Some Important Discrete Distributions
+1 The Normal Distribution
+1 Random Samples and Sampling Distributions
+0 Estimation
+0 Tests of Hypotheses
+0 Simple Linear Regression and Correlation
+0 Statistical Quality Control

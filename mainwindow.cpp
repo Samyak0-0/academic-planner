@@ -17,6 +17,7 @@
 
 #include <QFile>
 #include <QMessageBox>
+#include <QScrollBar>
 
 #include <QCheckBox>
 #include <QComboBox>
@@ -766,6 +767,9 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 
 void MainWindow::selectionForm()
 {
+
+
+
     QGridLayout *layout1 = new QGridLayout(this);
 
     QLabel *label1 = new QLabel(this);
@@ -820,6 +824,7 @@ void MainWindow::selectionForm()
     layout1->addWidget(cancel, 6, 1);
     connect(cancel, &QPushButton::clicked, this, &MainWindow::cancelClicked);
 
+
     QStackedWidget *stackedWidget = ui->stackedWidget;
     QWidget *page4 = stackedWidget->widget(3);
     page4->setLayout(layout1);
@@ -873,9 +878,15 @@ void MainWindow::syllabusPageClicked(QSet<QString> syllabusCodesSetParam)
 
     QWidget *layout_2Container = new QWidget;
     QGridLayout *layout_2 = new QGridLayout(layout_2Container);
+    layout_2->setHorizontalSpacing(0);
+   layout_2->setContentsMargins(0, 0, 0, 0);
+
 
     QLabel *syllLabel = new QLabel(this);
     syllLabel->setText("Syllabus : ");
+    syllLabel->setStyleSheet(
+        "font-size: 16px; color: #666; padding:10px; font-size: 50px;"
+        );
     layout_2->addWidget(syllLabel);
 
     int o = 1;
@@ -886,6 +897,11 @@ void MainWindow::syllabusPageClicked(QSet<QString> syllabusCodesSetParam)
         QFile topicsFile(topicsPath);
 
         QLabel *sbjLabel = new QLabel(this);
+        sbjLabel->setStyleSheet(
+            "font-weight: 600;"
+            "font-size: 25px;"
+            "padding: 0px;"
+            );
         sbjLabel->setText(syllCodes);
         layout_2->addWidget(sbjLabel, o, 0);
         ++o;
@@ -900,6 +916,20 @@ void MainWindow::syllabusPageClicked(QSet<QString> syllabusCodesSetParam)
                 line.remove(0, 2);
 
                 QCheckBox *checkBox = new QCheckBox(this);
+                checkBox->setStyleSheet("QCheckBox{"
+                                        "padding:0px 10px"
+                                        "}"
+                                        "QCheckBox::indicator{"
+                                        "padding: 10px;"
+                                        "border: 2px solid  #A9A9A9;"
+                                        "border-radius: 3px"
+                                        "}"
+                                        "QCheckBox::indicator:checked{"
+                                        "background-color: #D3D3D3;"
+                                        "border-radius: 3px;"
+                                        "}"
+                                        );
+
                 if (numVal.toInt()) {
                     checkBox->setChecked(true);
                 }
@@ -912,11 +942,20 @@ void MainWindow::syllabusPageClicked(QSet<QString> syllabusCodesSetParam)
                     qDebug() << syllCodes;
                 });
                 ++row;
-                layout_2->addWidget(checkBox, o, 0);
+
 
                 QLabel *topicsLabel = new QLabel(this);
+                topicsLabel->setStyleSheet(
+                    "font-size: 15px;"
+                    "padding:0px 10px"
+                    );
+
                 topicsLabel->setText(line);
-                layout_2->addWidget(topicsLabel, o, 1);
+                layout_2->addWidget(topicsLabel, o, 0,Qt::AlignLeft);
+
+                layout_2->addWidget(checkBox, o,1,Qt::AlignRight);
+
+
                 ++o;
             }
         }
@@ -927,6 +966,43 @@ void MainWindow::syllabusPageClicked(QSet<QString> syllabusCodesSetParam)
     QScrollArea *scrollableArea = new QScrollArea();
     scrollableArea->setWidget(layout_2Container);
     scrollableArea->setWidgetResizable(true);
+    QString scrollBarStyle = R"(
+        QScrollBar:vertical {
+        border: none;
+        background: #f5f5f5;
+        width: 5px;
+        border-radius: 3px;
+        margin: 0px 0px 5px 0px;
+        }
+QScrollBar::handle:vertical {
+    background-color: #A9A9A9;
+    min-height: 20px;
+    border-radius: 3px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: #D3D3D3;
+}
+
+QScrollBar::handle:vertical:pressed {
+    background-color: #A9A9A9;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    border: none;
+    background: none;
+    height: 0px;
+}
+
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+    background: none;
+}
+
+
+)";
+
+ scrollableArea->verticalScrollBar()->setStyleSheet(scrollBarStyle);
+
 
     if (initialRender) {
         QLayoutItem *item;
