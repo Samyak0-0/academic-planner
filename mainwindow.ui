@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1191</width>
+    <width>1096</width>
     <height>699</height>
    </rect>
   </property>
@@ -170,7 +170,7 @@
              </property>
              <property name="styleSheet">
               <string notr="true">QPushButton{
-	font-size:25px;
+	font-size:23px;
 	padding:6px;
 	border:none;
 	text-align:center;
@@ -223,7 +223,7 @@ QPushButton:checked{
              </property>
              <property name="styleSheet">
               <string notr="true">QPushButton{
-	font-size: 25px;
+	font-size: 23px;
 	padding:7px;
 	border:none;
 	text-align:center;
@@ -276,7 +276,7 @@ QPushButton:checked{
              </property>
              <property name="styleSheet">
               <string notr="true">QPushButton{
-	font-size: 25px;
+	font-size: 23px;
 	padding:7px;
 	border:none;
 	text-align:center;

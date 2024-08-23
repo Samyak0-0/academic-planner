@@ -590,7 +590,7 @@ courseCode0->setStyleSheet("font-size: 50px; color: #333; font-weight: bold; pad
     QPushButton *deleteBtn = new QPushButton(this);
     deleteBtn->setText("Delete");
     ok->setStyleSheet(
-        " QPushButton{font-family: 'Segoe UI', sans-serif; font-size:20px; font-weight: bold; color: black;  border-radius: 10px; margin-top: 200px; background-color:#fdfdff; border: 2px solid grey;} QPushButton:hover {"
+        " QPushButton{font-family: 'Segoe UI', sans-serif; font-size:20px; font-weight: bold; color: black;  border-radius: 10px; margin-top: 200px; background-color:#fdfdff; border: px solid grey;} QPushButton:hover {"
                                     "background-color: #e5e5e5;"
                                     "}");
     deleteBtn->setStyleSheet(
@@ -783,11 +783,19 @@ void MainWindow::selectionForm()
     // QLabel *label5= new QLabel(this);
     // label5->setText("Syllabus: ");
 
+    QString labelStyle = "font-weight: 600; font-size: 16px; color: #333; font-family: 'Segoe UI', sans-serif;";
+    label1->setStyleSheet(labelStyle);
+    label2->setStyleSheet(labelStyle);
+    label3->setStyleSheet(labelStyle);
+    label4->setStyleSheet(labelStyle);
+
     courseName = new QLineEdit(this);
     courseName->setReadOnly(true);
     courseCredits = new QLineEdit(this);
     courseCredits->setReadOnly(true);
-
+    QString lineEditStyle = "border: 1px solid #ccc; padding: 5px;";
+    courseName->setStyleSheet(lineEditStyle);
+    courseCredits->setStyleSheet(lineEditStyle);
     QComboBox *comboBox = new QComboBox();
 
     QFile CSVFile("ku_ce.csv");
@@ -802,26 +810,70 @@ void MainWindow::selectionForm()
 
     connect(comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboBoxValueChanged(int)));
     comboBox->setCurrentIndex(-1);
+    comboBox->setStyleSheet(
+        "QComboBox {"
+        "   border: 1px solid #ccc;"        // Border style
+        "   padding: 5px;"                  // Padding inside the combobox
+        "   font-size: 14px;"               // Font size of the text
+        "   color: #333;"                   // Text color
+        "}"
+
+        "QComboBox QAbstractItemView {"
+        "   background-color: #ffffff;"     // Background color of the drop-down list
+        "   selection-background-color: #4CAF50;" // Background color of selected item
+        "   selection-color: white;"        // Text color of selected item
+        "}"
+        ""
+
+        );
+;
 
     layout1->addWidget(label1, 0, 0);
-    layout1->addWidget(comboBox, 0, 1);
+    layout1->addWidget(comboBox, 0, 1,1,2);
     layout1->addWidget(label2, 1, 0);
-    layout1->addWidget(courseName, 1, 1);
+    layout1->addWidget(courseName, 1, 1,1,2);
     layout1->addWidget(label3, 2, 0);
-    layout1->addWidget(courseCredits, 2, 1);
+    layout1->addWidget(courseCredits, 2, 1,1,2);
     layout1->addWidget(label4, 3, 0);
 
     syllabus = new QListWidget(this);
-    layout1->addWidget(syllabus, 5, 0);
+    layout1->addWidget(syllabus, 4, 0,1,3);
+    syllabus->setStyleSheet("font-size: 16px; color: #333; font-family: 'Segoe UI', sans-serif;");
 
     QPushButton *ok = new QPushButton();
-    ok->setText("OK");
-    layout1->addWidget(ok, 6, 2, 1, 2);
+    ok->setText("Done");
+    layout1->addWidget(ok, 6, 2, Qt::AlignRight);
+    ok->setStyleSheet(" QPushButton{font-family: "
+                      "'Segoe UI', sans-serif; "
+                      "font-size:20px;"
+                      "font-weight: bold; "
+                      "color: black; "
+                      "border-radius: 10px;"
+                      "background-color:#fdfdff;"
+                      "border: 1px solid grey;"
+                      "width: 450px"
+                      "} "
+
+                      "QPushButton:hover {"
+                      "background-color: #e5e5e5;"
+                      "}");
     connect(ok, &QPushButton::clicked, this, &MainWindow::okClicked);
 
     QPushButton *cancel = new QPushButton();
-    cancel->setText("cancel");
-    layout1->addWidget(cancel, 6, 1);
+    cancel->setText("Cancel");
+    layout1->addWidget(cancel, 6, 1,Qt::AlignRight);
+    cancel->setStyleSheet("QPushButton {"
+                          "font-weight:bold;"
+                          "font-family: 'Segoe UI', sans-serif;"
+                          "background-color: #FFC107;"
+                          "color: black;"
+                          "border-radius: 10px;"
+                          "padding: 10px 100px;"
+                          "font-size: 14px; font-size:20px; "
+                          "width: 200px; }"
+                          "QPushButton:hover {"
+                          "background-color: #FFB300;"
+                          "}");
     connect(cancel, &QPushButton::clicked, this, &MainWindow::cancelClicked);
 
 
@@ -968,35 +1020,35 @@ void MainWindow::syllabusPageClicked(QSet<QString> syllabusCodesSetParam)
     scrollableArea->setWidgetResizable(true);
     QString scrollBarStyle = R"(
         QScrollBar:vertical {
-        border: none;
-        background: #f5f5f5;
-        width: 5px;
-        border-radius: 3px;
-        margin: 0px 0px 5px 0px;
+            border: none;
+            background: #f5f5f5;
+            width: 5px;
+            border-radius: 3px;
+            margin: 0px 0px 5px 0px;
         }
-QScrollBar::handle:vertical {
-    background-color: #A9A9A9;
-    min-height: 20px;
-    border-radius: 3px;
-}
+        QScrollBar::handle:vertical {
+            background-color: #A9A9A9;
+            min-height: 20px;
+            border-radius: 3px;
+        }
 
-QScrollBar::handle:vertical:hover {
-    background-color: #D3D3D3;
-}
+        QScrollBar::handle:vertical:hover {
+            background-color: #D3D3D3;
+        }
 
-QScrollBar::handle:vertical:pressed {
-    background-color: #A9A9A9;
-}
+        QScrollBar::handle:vertical:pressed {
+            background-color: #A9A9A9;
+        }
 
-QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
-    border: none;
-    background: none;
-    height: 0px;
-}
+        QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+            border: none;
+            background: none;
+            height: 0px;
+        }
 
-QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
-    background: none;
-}
+        QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+            background: none;
+        }
 
 
 )";

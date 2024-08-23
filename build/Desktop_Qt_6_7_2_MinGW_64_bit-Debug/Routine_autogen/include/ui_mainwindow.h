@@ -63,7 +63,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(1191, 699);
+        MainWindow->resize(1096, 699);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/resoruces/logos/routineicon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         MainWindow->setWindowIcon(icon);
@@ -133,7 +133,7 @@ public:
         font.setItalic(false);
         RoutineBut->setFont(font);
         RoutineBut->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"	font-size:25px;\n"
+"	font-size:23px;\n"
 "	padding:6px;\n"
 "	border:none;\n"
 "	text-align:center;\n"
@@ -160,7 +160,7 @@ public:
         SyllabusBut->setMinimumSize(QSize(30, 20));
         SyllabusBut->setFont(font);
         SyllabusBut->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"	font-size: 25px;\n"
+"	font-size: 23px;\n"
 "	padding:7px;\n"
 "	border:none;\n"
 "	text-align:center;\n"
@@ -187,7 +187,7 @@ public:
         ToDoBut->setMinimumSize(QSize(40, 30));
         ToDoBut->setFont(font);
         ToDoBut->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"	font-size: 25px;\n"
+"	font-size: 23px;\n"
 "	padding:7px;\n"
 "	border:none;\n"
 "	text-align:center;\n"

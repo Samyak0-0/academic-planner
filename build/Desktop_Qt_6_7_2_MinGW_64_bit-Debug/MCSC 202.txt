@@ -1,0 +1,8 @@
+0 Basic introduction of Computer programming language
+0 Errors in numerical computation
+0 Root findings
+0 Finite differences and Interpolation
+0 Solving ODE (IVP)
+0 Numerical Differentiation and Integration
+0 Matrices and System of linear equations
+0 Curve fitting

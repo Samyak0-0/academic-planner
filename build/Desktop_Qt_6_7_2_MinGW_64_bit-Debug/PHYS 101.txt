@@ -1,6 +1,6 @@
 0 Mechanics
-0 Rotational Dynamics
-0 Wave and Oscillation
+1 Rotational Dynamics
+1 Wave and Oscillation
 0 Elasticity
 0 Viscosity
 0 Optics

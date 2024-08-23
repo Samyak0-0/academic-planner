@@ -58,7 +58,7 @@ ToDoList::ToDoList(QListWidget *listWidget,
                                     "font-family: 'Segoe UI', sans-serif;"
                                     "background-color: 	#fdfdff;"
                                     "color: black;"
-                                    "border: 2px solid grey;"
+                                    "border: 1px solid grey;"
                                     "border-radius: 10px;"
                                     "padding: 8px 16px;"
                                     "font-size: 14px;"
