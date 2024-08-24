@@ -1,11 +1,11 @@
-0 Electricity and Magnetism
-0 Vector Analysis
-0 Electrostatic field
-0 Electrostatic field in matter
-0 Magnetostatics
-0 Magnetostatic field in matter
-0 Electromagnetic induction
-0 Electromagnetic wave propagation
-0 Modern Physics
-0 Physics of atoms and molecules
-0 Nuclear physics
+1 Electricity and Magnetism
+1 Vector Analysis
+1 Electrostatic field
+1 Electrostatic field in matter
+1 Magnetostatics
+1 Magnetostatic field in matter
+1 Electromagnetic induction
+1 Electromagnetic wave propagation
+1 Modern Physics
+1 Physics of atoms and molecules
+1 Nuclear physics

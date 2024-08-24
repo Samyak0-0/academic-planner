@@ -67,9 +67,13 @@ public:
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/resoruces/logos/routineicon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         MainWindow->setWindowIcon(icon);
+        MainWindow->setStyleSheet(QString::fromUtf8("\n"
+"	background-color: #1e293b\n"
+""));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
-        centralwidget->setStyleSheet(QString::fromUtf8("background-color:rgb(206, 217, 255);\n"
+        centralwidget->setStyleSheet(QString::fromUtf8("\n"
+"	background-color: #334155\n"
 ""));
         horizontalLayout_5 = new QHBoxLayout(centralwidget);
         horizontalLayout_5->setObjectName("horizontalLayout_5");
@@ -85,7 +89,7 @@ public:
         sidebar->setMaximumSize(QSize(250, 10000));
         sidebar->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         sidebar->setStyleSheet(QString::fromUtf8("QWidget{\n"
-"	background-color:rgb(206, 217, 255)\n"
+"	background-color: #334155\n"
 "}"));
         verticalLayout_3 = new QVBoxLayout(sidebar);
         verticalLayout_3->setObjectName("verticalLayout_3");
@@ -133,18 +137,19 @@ public:
         font.setItalic(false);
         RoutineBut->setFont(font);
         RoutineBut->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"	font-size:23px;\n"
+"	font-size:20px;\n"
 "	padding:6px;\n"
 "	border:none;\n"
 "	text-align:center;\n"
 "	font:bold;\n"
-"	color:black;\n"
+"	color:white;\n"
 "	padding-left:18px;\n"
-"	border-radius:16px;\n"
+"	border-radius: 5px;\n"
 "}\n"
 "QPushButton:checked{\n"
-"	background-color:rgb(254, 255, 244);\n"
-"	color:rgb(43, 48, 44)\n"
+"	\n"
+"	background-color:rgba(0, 0, 0,0.2);\n"
+"	\n"
 "}"));
         QIcon icon1;
         icon1.addFile(QString::fromUtf8(":/resoruces/logos/tableicon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
@@ -160,18 +165,19 @@ public:
         SyllabusBut->setMinimumSize(QSize(30, 20));
         SyllabusBut->setFont(font);
         SyllabusBut->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"	font-size: 23px;\n"
+"	font-size: 20px;\n"
 "	padding:7px;\n"
 "	border:none;\n"
 "	text-align:center;\n"
 "	font:bold;\n"
-"	color:black;\n"
+"	color:white;\n"
 "	padding-left:18px;\n"
-"	border-radius:16px;\n"
+"	border-radius:5px;\n"
 "}\n"
 "QPushButton:checked{\n"
-"	background-color:rgb(254, 255, 244);\n"
-"	color:rgb(43, 48, 44)\n"
+"	\n"
+"	background-color:rgba(0, 0, 0,0.2);\n"
+"	\n"
 "}"));
         QIcon icon2;
         icon2.addFile(QString::fromUtf8(":/resoruces/logos/syllabusicon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
@@ -187,18 +193,19 @@ public:
         ToDoBut->setMinimumSize(QSize(40, 30));
         ToDoBut->setFont(font);
         ToDoBut->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"	font-size: 23px;\n"
+"	font-size: 20px;\n"
 "	padding:7px;\n"
 "	border:none;\n"
 "	text-align:center;\n"
 "	font:bold;\n"
-"	color:black;\n"
+"	color:white;\n"
 "	padding-right: 25px;\n"
-"	border-radius:16px;\n"
+"	border-radius:5px;\n"
 "}\n"
 "QPushButton:checked{\n"
-"	background-color:rgb(254, 255, 244);\n"
-"	color:rgb(43, 48, 44)\n"
+"	\n"
+"	background-color:rgba(0, 0, 0,0.2);\n"
+"	\n"
 "}"));
         QIcon icon3;
         icon3.addFile(QString::fromUtf8(":/resoruces/logos/todolisticon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
@@ -224,7 +231,7 @@ public:
         stackedWidget->setStyleSheet(QString::fromUtf8("QWidget{\n"
 "margin-left: 10px;\n"
 "color: black;\n"
-"background-color:rgb(255, 238, 239);\n"
+"background-color:white;\n"
 "}"));
         RoutinePage = new QWidget();
         RoutinePage->setObjectName("RoutinePage");

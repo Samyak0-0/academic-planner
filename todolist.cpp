@@ -20,6 +20,7 @@ ToDoList::ToDoList(QListWidget *listWidget,
     {
         // Set up styles for the list widget, text box, and buttons
         listWidget->setStyleSheet("QListWidget {"
+                                  "border: 1px solid #1e293b;"
                                    "font-family: 'Segoe UI', sans-serif;"
                                   "padding-left:15px;"
                                   "border-radius: 5px;"
@@ -30,6 +31,7 @@ ToDoList::ToDoList(QListWidget *listWidget,
                                   "}");
 
         taskTextBox->setStyleSheet("QLineEdit {"
+                                   "border: 1px solid #1e293b;"
                                     "font-family: 'Segoe UI', sans-serif;"
                                     "padding-left:30px;"
                                    "border-radius: 5px;"
@@ -43,14 +45,14 @@ ToDoList::ToDoList(QListWidget *listWidget,
                                  "font-size:100px;"
                                 "font-weight: 1000;"
                                  "font-family: 'Segoe UI', sans-serif;"
-                                 "background-color: #4CAF50;"
-                                 "color: black;"
+                                 "background-color: #334155;"
+                                 "color: white;"
                                  "border-radius: 5px;"
                                  "padding: 8px 16px;"
                                  "font-size: 14px;"
                                  "}"
                                  "QPushButton:hover {"
-                                 "background-color: #45A049;"
+                                 "background-color: #1e293b;"
                                  "}");
 
         deleteButton->setStyleSheet("QPushButton {"

@@ -590,7 +590,7 @@ courseCode0->setStyleSheet("font-size: 50px; color: #333; font-weight: bold; pad
     QPushButton *deleteBtn = new QPushButton(this);
     deleteBtn->setText("Delete");
     ok->setStyleSheet(
-        " QPushButton{font-family: 'Segoe UI', sans-serif; font-size:20px; font-weight: bold; color: black;  border-radius: 10px; margin-top: 200px; background-color:#fdfdff; border: px solid grey;} QPushButton:hover {"
+        " QPushButton{font-family: 'Segoe UI', sans-serif; font-size:20px; font-weight: bold; color: black;  border-radius: 10px; margin-top: 200px; background-color:#fdfdff; border: 2px solid grey;} QPushButton:hover {"
                                     "background-color: #e5e5e5;"
                                     "}");
     deleteBtn->setStyleSheet(
@@ -629,11 +629,19 @@ courseCode0->setStyleSheet("font-size: 50px; color: #333; font-weight: bold; pad
             line.remove(0, 2);
 
             QCheckBox *checkBox = new QCheckBox(this);
-            checkBox->setStyleSheet(
-                "QCheckBox {"
-                "   spacing: 20px;"                 // Space between checkbox and text
-                "   font-size: 30px;"              // Font size of the text
-                );
+            checkBox->setStyleSheet("QCheckBox{"
+                                    "padding:0px 10px"
+                                    "}"
+                                    "QCheckBox::indicator{"
+                                    "padding: 10px;"
+                                    "border: 2px solid  #A9A9A9;"
+                                    "border-radius: 3px"
+                                    "}"
+                                    "QCheckBox::indicator:checked{"
+                                    "background-color: #D3D3D3;"
+                                    "border-radius: 3px;"
+                                    "}"
+                                    );
             if (numVal.toInt()) {
                 checkBox->setChecked(true);
             }

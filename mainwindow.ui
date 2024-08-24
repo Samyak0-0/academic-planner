@@ -17,9 +17,15 @@
    <iconset resource="images.qrc">
     <normaloff>:/resoruces/logos/routineicon.png</normaloff>:/resoruces/logos/routineicon.png</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true">
+	background-color: #1e293b
+</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
-    <string notr="true">background-color:rgb(206, 217, 255);
+    <string notr="true">
+	background-color: #334155
 </string>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -44,7 +50,7 @@
         </property>
         <property name="styleSheet">
          <string notr="true">QWidget{
-	background-color:rgb(206, 217, 255)
+	background-color: #334155
 }</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -170,18 +176,19 @@
              </property>
              <property name="styleSheet">
               <string notr="true">QPushButton{
-	font-size:23px;
+	font-size:20px;
 	padding:6px;
 	border:none;
 	text-align:center;
 	font:bold;
-	color:black;
+	color:white;
 	padding-left:18px;
-	border-radius:16px;
+	border-radius: 5px;
 }
 QPushButton:checked{
-	background-color:rgb(254, 255, 244);
-	color:rgb(43, 48, 44)
+	
+	background-color:rgba(0, 0, 0,0.2);
+	
 }</string>
              </property>
              <property name="text">
@@ -223,18 +230,19 @@ QPushButton:checked{
              </property>
              <property name="styleSheet">
               <string notr="true">QPushButton{
-	font-size: 23px;
+	font-size: 20px;
 	padding:7px;
 	border:none;
 	text-align:center;
 	font:bold;
-	color:black;
+	color:white;
 	padding-left:18px;
-	border-radius:16px;
+	border-radius:5px;
 }
 QPushButton:checked{
-	background-color:rgb(254, 255, 244);
-	color:rgb(43, 48, 44)
+	
+	background-color:rgba(0, 0, 0,0.2);
+	
 }</string>
              </property>
              <property name="text">
@@ -276,18 +284,19 @@ QPushButton:checked{
              </property>
              <property name="styleSheet">
               <string notr="true">QPushButton{
-	font-size: 23px;
+	font-size: 20px;
 	padding:7px;
 	border:none;
 	text-align:center;
 	font:bold;
-	color:black;
+	color:white;
 	padding-right: 25px;
-	border-radius:16px;
+	border-radius:5px;
 }
 QPushButton:checked{
-	background-color:rgb(254, 255, 244);
-	color:rgb(43, 48, 44)
+	
+	background-color:rgba(0, 0, 0,0.2);
+	
 }</string>
              </property>
              <property name="text">
@@ -335,7 +344,7 @@ QPushButton:checked{
          <string notr="true">QWidget{
 margin-left: 10px;
 color: black;
-background-color:rgb(255, 238, 239);
+background-color:white;
 }</string>
         </property>
         <property name="currentIndex">
